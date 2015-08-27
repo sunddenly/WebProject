@@ -50,3 +50,5 @@ target/
 .classpath
 .project
 .settings/
+.mymetadata
+*.MF
