@@ -41,3 +41,12 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+.metadata
+#忽略class文件
+*.class
+#忽略maven编译的target文件夹
+target/
+#忽略eclipse的工程文件
+.classpath
+.project
+.settings/
