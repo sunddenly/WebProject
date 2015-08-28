@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" 
+	xmlns="http://java.sun.com/xml/ns/javaee" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+	<servlet>
+		<servlet-name>AddEmpServlet</servlet-name>
+		<servlet-class>web.AddEmpServlet</servlet-class>
+	</servlet>
+	<!-- 配置映射地址 -->
+	<servlet-mapping>
+		<servlet-name>AddEmpServlet</servlet-name>
+		<url-pattern>/addemp</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>ListEmpServlet</servlet-name>
+		<servlet-class>web.ListEmpServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ListEmpServlet</servlet-name>
+		<url-pattern>/listemp</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>DelEmpServlet</servlet-name>
+		<servlet-class>web.DelEmpServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DelEmpServlet</servlet-name>
+		<url-pattern>/delemp</url-pattern>
+	</servlet-mapping>
+</web-app>
