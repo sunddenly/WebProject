@@ -29,4 +29,20 @@
 		<servlet-name>DelEmpServlet</servlet-name>
 		<url-pattern>/delemp</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>LoadEmpServlet</servlet-name>
+		<servlet-class>web.LoadEmpServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>LoadEmpServlet</servlet-name>
+		<url-pattern>/loademp</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>ModifyEmpServlet</servlet-name>
+		<servlet-class>web.ModifyEmpServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ModifyEmpServlet</servlet-name>
+		<url-pattern>/modifyemp</url-pattern>
+	</servlet-mapping>
 </web-app>

@@ -54,10 +54,9 @@ public class ListEmpServlet extends HttpServlet{
 				out.println("<td>"+age+"<td/>");
 				//添加删除时，需要隐藏每一条记录的ID
 				out.println("<td>"+
-						"<a href='delemp?id="+id+"' onclick=\"return confirm('是否确认删除"+name+"？')\">删除</a>"+
-						"<td/>");
-				out.println("<a href='load?id="+id+"'>修改</a>");
-				out.println("</tr>");
+						"<a href='delemp?id="+id+"' onclick=\"return confirm('是否确认删除"+name+"？')\">删除</a>");
+				out.println("<a href='loademp?id="+id+"'>修改</a>");
+				out.println("</td></tr>");
 			}
 			out.println("</table></body>"+
 					"<a href='addemp.html'>增加员工</a>"
