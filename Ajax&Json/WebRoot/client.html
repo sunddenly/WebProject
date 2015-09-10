@@ -1,0 +1,43 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>client.html</title>
+		<script type="text/javascript" src="js/json.js"></script>
+		<script type="text/javascript" src="js/my.js"></script>
+		<script type="text/javascript">
+			function getInfo(){
+				var xhr = getXhr();
+				xhr.onreadystatechange=function(){
+					if(xhr.readyState==4&&xhr.status==200){
+						var msg = document.getElementById("msg");
+						var str =xhr.responseText;
+						var obj = str.parseJSON();
+						msg.innerHTML = obj.name+":"+obj.age;
+					}
+				}
+				xhr.open("get","getInfo.do",true);
+				xhr.send(null);
+		   }
+			function sendInfo(){
+				var xhr = getXhr();
+				var name = document.getElementById("name").value;
+				var age = document.getElementById("age").value;
+				var jstr ="{\"name\":\""+name+"\",\"age\":"+age+"}";
+				xhr.onreadystatechange=function(){
+					if(xhr.readyState==4&&xhr.status==200){
+					}
+				}
+				xhr.open("post","sendInfo.do",true);
+				xhr.setRequestHeader('content-type','application/x-www-form-urlencoded');
+				xhr.send("json="+jstr);
+		   }
+		</script>
+	</head>
+	<body>
+		<input type="button" value="获取内容" onclick="getInfo()"/>
+		<div id="msg"></div>
+		<input id="name" name="name"/><br/>
+		<input id="age" name="age"/><br/>
+		<input type="button" value="发送数据" onclick="sendInfo()"/><br/>
+	</body>
+</html>

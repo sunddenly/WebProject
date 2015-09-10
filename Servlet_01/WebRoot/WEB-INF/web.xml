@@ -20,4 +20,16 @@
 		<servlet-name>DateServlet</servlet-name>
 		<url-pattern>/date</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>a3</servlet-name>
+		<jsp-file>/a3.jsp</jsp-file>
+		<init-param>
+			<param-name>company</param-name>
+			<param-value>hebut</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>a3</servlet-name>
+		<url-pattern>/abc.html</url-pattern>
+	</servlet-mapping>
 </web-app>

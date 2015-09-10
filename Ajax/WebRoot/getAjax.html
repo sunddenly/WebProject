@@ -1,0 +1,41 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>a2.html</title>
+		<script type="text/javascript">
+			/*创建ajax对象*/
+			function getXhr(){
+				var xhr = null; 
+				if(window.XMLHttpRequest){
+					xhr = new XMLHttpRequest();
+				}else{
+					xhr = new ActiveXObject('Microsoft.XMLHttp');
+				}
+				return xhr;
+			}
+			//向服务器发送请求，获取文本
+			function getText(){
+				//1. 创建ajax对象
+				var xhr = getXhr();
+				//2. 创建请求
+				xhr.open("get","getInfo.do",true);
+				//3. 设置回调函数
+				xhr.onreadystatechange=function(){
+					/**
+					 * 只有当状态变成4时，代表接收数据完毕
+					 * 只有当响应码是200时，才代表收到了正确的响应
+					 */
+					if(xhr.readyState==4&&xhr.status==200){
+						//获取返回的部分数据
+						alert(xhr.responseText)
+					}
+				};
+				//4. 发送请求
+				xhr.send();
+			}
+		</script>
+	</head>
+	<body>
+		<a href="javascript:;" onclick="getText()">get方式访问数据</a>			
+	</body>
+</html>

@@ -36,6 +36,9 @@ public class ActionServlet extends HttpServlet {
 				if(user != null){
 					request.setAttribute("regist_error", "用户名已经存在！");
 					request.getRequestDispatcher("regist.jsp").forward(request, response);
+				}else if(username.length()<1){
+					request.setAttribute("regist_error", "用户名不合法！");
+					request.getRequestDispatcher("regist.jsp").forward(request, response);
 				}else{
 					user = new User(username, pwd, name, gender);
 					dao.save(user);

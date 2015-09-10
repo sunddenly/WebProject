@@ -1,0 +1,28 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>Insert title here</title>
+		<script type="text/javascript">
+			function f1(){
+				//一个javascript对象
+				var obj = {"name":"Luffy","age":17};
+				//一个符合jason格式的字符串
+				var jsonStr = '{"name":"Luffy","age":17}';
+				//使用原生的JSONd对象的stringify把javascript对象转换为字符串
+				var str = JSON.stringify(obj);
+				alert(str);
+			}
+			function f2(){
+				//一个符合jason格式的字符串比较严格，属性名必须加引号
+				var jsonStr = '{"name":"Luffy","age":17}';
+				//使用原生的JSONd对象的parse把javascript对象转换为字符串
+				var obj = JSON.parse(jsonStr);
+				alert(obj.name+":"+obj.age);
+			}
+		</script>
+	</head>
+	<body>
+		<input type="button" onclick="f1()" value="js对象到json字符串"/>
+		<input type="button" onclick="f2()" value="js字符串到json对象"/>
+	</body>
+</html>

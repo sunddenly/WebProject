@@ -1,0 +1,44 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>Insert title here</title>
+		<script type="text/javascript" src="js/my.js">
+		</script>
+		<script type="text/javascript">
+			function getCity(city){
+				var xhr= getXhr();
+				xhr.onreadystatechange=function(){
+					//海淀，hd;朝阳,cy
+					//获取反问区域的信息加载到s2
+					if(xhr.readyState==4&&xhr.status==200){
+						var info = xhr.responseText;
+						//拆分每一组area
+						var as = info.split(";");
+						//清空原有选项信息
+						$("s2").innerHTML="";
+						//遍历每一组的区域信息
+						for(var i=0;i<as.length;i++){
+							var s = as[i];
+							var ss = as[i].split(","); 
+							var option = new Option(ss[0],ss[1]);
+							$("s2").options[i] = option;
+						}
+					}
+				};
+				xhr.open("get","getArea.do?cityName="+city,true)
+				xhr.send(null);
+			}
+		</script>
+	</head>
+	<body>
+		城市：
+		<select id="s1" onchange="getCity(this.value)">
+			<option value="bj">北京</option>
+			<option value="sh">上海</option>
+			<option value="gz">广州</option>
+		</select>
+		区域：
+		<select id="s2">
+		</select>
+	</body>
+</html>
