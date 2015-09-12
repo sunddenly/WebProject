@@ -1,0 +1,193 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<script type="text/javascript" src="js/jquery-1.11.1.js"></script>
+		<script type="text/javascript">
+			/**可见性选择器*/
+			function f1(){
+				//$("div:contains(这里)").css("font-size","30px");
+				$("div:empty").html("new");
+			}
+			function f2(){
+				$("div:has(p)").css("color","red");
+			}
+			function f3(){
+				$("div:hidden").show('slow');
+			}
+			function f4(){
+				$("div:visible").hide('slow');
+			}
+			/**基本过滤选择器**/
+			function f5(){
+				$('table tr').css('background-color','#cccccc');
+				$('table tr:first').css('background-color','red');
+				$('table tr:eq(3)').css('background-color','yellow');
+			}
+			function f6(){
+				$('tbody tr:even').css('background-color','#fff8dc');
+				$('tbody tr:odd').css('background-color','yellow');
+			}
+			function f7(){
+				$('tbody tr:eq(1) td:eq(1)')
+				.css('background-color','yellow')
+				.css('font-size','30px')
+			}
+			function f8() {
+				$('tbody tr:not(#tr2)')
+				.css('background-color','yellow')
+			}
+			/**属性过滤器**/
+			function f9(){
+				$('div[id]').css('font-size','30px');
+			}
+			function f10(){
+				$('div[id=d2]').css('font-size','30px');
+			}
+			function f11(){
+				$('div[id!=d2]').css('font-size','30px');
+			}
+			function f12(){
+				//对eq来讲会将ul li的所有元素作为整体来进行编号，所以编号该是0-7
+				$('ul li:eq(1)').css('font-size','30px');
+			}
+			function f13(){
+				//对nth-child来讲会将ul的每一组li作为整体来进行编号即按父元素来分组，所以每组编号该是0-3
+				$('ul li:nth-child(2)').css('font-size','30px');
+			}
+			/**表单对象选择器**/
+			function f14(){
+				$('#form1 input:disabled')
+				.css('border','1px dotted red');
+			}
+			function f15(){
+				//$('#form1 input:enabled').css('border','1px dotted red');
+				$('#form1 input:enabled')
+				.attr('disabled',true);
+			}
+			function f16(){
+				var length = $('#form2 input:checked').length;
+				//alert(length);
+				//alert($('#form2 input:checked').val());
+				$(':checkbox:checked').each(function(){
+					alert($(this).val());
+				});
+
+			}
+			function f17(){
+				alert($('#form3 select option:selected').val());
+				alert($('option:selected').val());
+			}
+		</script>
+		<title>html</title>
+	</head>
+	<body>
+	    <!-- 
+	    	:first         第一行被挑选出来
+	    	:last          最后一个被挑选出来
+	    	:not(selector) 把selector排除在外
+	    	:even          偶数行
+	    	:odd           奇数行
+	    	:eq(index)     如果使用第二行？使用该方法，index从0开始
+	    	:gt(index)     大于index下标的
+	    	:lt(index)     小于index下标的
+	     -->
+	         基本过滤选择器：
+	    <hr/>
+	    <a href="javascript:;" onclick = "f5()">过滤选择器</a>
+		<table width="60%" border="1" cellpadding="0" cellspacing="0">
+			<thead>
+				<tr>
+					<td>name</td><td>age</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Tom</td><td>21</td>
+				</tr>
+				<tr id="tr2">
+					<td>Jerry</td><td>22</td>
+				</tr>
+				<tr>
+					<td>kitty</td><td>23</td>
+				</tr>
+				<tr>
+					<td>Doro</td><td>24</td>
+				</tr>
+			</tbody>
+		</table>
+		<br/>
+		内容过滤选择器：
+		<hr/>
+		<div>这里是div</div>
+		<div>xxxx</div>
+		<div></div>
+		<div>
+			<p>含有P标记
+			</p>
+		</div>
+		<div style="display: none">
+			<p>隐藏div
+			</p>
+		</div>
+		<input type="button" onclick="f1()" value="click1"/>	
+		<input type="button" onclick="f2()" value="click2"/>	
+		<input type="button" onclick="f3()" value="显示"/>	
+		<input type="button" onclick="f4()" value="隐藏"/>	
+		<!-- 属性过滤选择器
+			[attribute]
+			[attribute=value]
+			[attribute!=value]
+		 -->
+		 <br/>
+		 属性过滤选择器：
+		 <hr/>
+		 <a href="javascript:;" onclick="f11()">属性过滤选择器</a>
+		<div id="d1">有Id的div:d1</div>
+		<div id="d2">有Id的div:d2</div>
+		<div>没有Id的div</div>
+		<br/>
+		子元素过滤选择器：
+		<hr/>
+		<!-- 
+			:nth-child(index/even/odd)
+			  index是从1开始的整数，表示对应位置子元素
+		 -->
+		 <a href="javascript:;" onclick="f12()">子元素过滤选择器</a>
+		 <ul>
+		 	<li>item1</li>
+		 	<li>item2</li>
+		 	<li>item3</li>
+		 </ul>
+		 <ul>
+		 	<li>item11</li>
+		 	<li>item22</li>
+		 	<li>item33</li>
+		 </ul>
+		 表单对象过滤选择器：
+		 <hr/>
+		 <!-- 
+		 	表单对象过滤选择器
+		 	:enabled
+		 	:disable
+		 	:checked
+		 	:selected
+		  -->
+		  <a href="javascript:;" onclick="f16()">表单对象过滤选择器</a>
+		  <form id="form1">
+		  		username:<input name="username"/><br/>
+		  		name:<input name="name" disabled="disabled"/><br/>
+		  </form>
+		  <form id="form2">
+		  		兴趣:吃饭<input type="checkbox" name="interest" value=eating checked="checked"/><br/>
+		  		喝茶:<input type="checkbox" name="interest" value="drinking"/><br/>
+		  		看报纸:<input type="checkbox" name="interest" value="reading"/><br/>
+		  </form>
+		  <form id="form3">
+		  		<select>
+		  			<option value="math">数学</option>
+		  			<option value="english" selected="selected">英语</option>
+		  			<option value="computer">计算机</option>
+		  		</select>
+		  </form>
+	</body>
+</html>

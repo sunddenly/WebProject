@@ -1,0 +1,48 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<script type="text/javascript" src="js/jquery-1.11.1.js"></script>
+		<title>html</title>
+		<style>
+			.s1{
+				color: red;
+			}
+			.s2{
+				font-size: 20px;
+			}
+		</style>
+		<script type="text/javascript" src="js/jquery-1.11.1.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				$('#a1').click(
+						function(){
+							//$('#d1').attr('id');//获取d1的id属性
+							//$('#d1').attr('style','color:red;font-size:30px');
+							//$('#d1').attr('class','s1');
+
+							//$('#d1').addClass('s1');
+							//$('#d1').addClass('s1 s2');
+							//$('#d1').removeClass('s1');
+							//$('#d1').toggleClass('s2');
+							//alert($('#d1').has('s1'));
+							$('#d1').css('font-style','italic');
+						}
+				);
+			});
+		</script>
+	</head>
+	<body>
+		<!--
+			样式操作
+			获取设置：attr("class","")  或者 attr("style","")
+			追加： addClass()
+			移除： removeClass() 删除所有样式
+				  removeClass('s1 s2') 删除指定样式
+			切换样式：toggleClass，有该样式就删除,没有就创建
+			是否有某个样式：hasClass('')
+			读取css('')
+		-->
+		<div id="d1">Hello JQuery</div>
+		<a href="javascript:;"id="a1">样式操作</a>
+	</body>
+</html>

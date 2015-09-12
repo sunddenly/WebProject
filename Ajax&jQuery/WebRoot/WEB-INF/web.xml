@@ -6,19 +6,10 @@
 	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
   <display-name></display-name>
   <servlet>
-    <servlet-name>ServerServlet</servlet-name>
-    <servlet-class>web.ServerServlet</servlet-class>
-  </servlet>
-  <servlet>
     <servlet-name>ActionServlet</servlet-name>
     <servlet-class>web.ActionServlet</servlet-class>
   </servlet>
 
-
-  <servlet-mapping>
-    <servlet-name>ServerServlet</servlet-name>
-    <url-pattern>*.do</url-pattern>
-  </servlet-mapping>
   <servlet-mapping>
     <servlet-name>ActionServlet</servlet-name>
     <url-pattern>*.do</url-pattern>

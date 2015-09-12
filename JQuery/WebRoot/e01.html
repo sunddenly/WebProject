@@ -1,0 +1,39 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script type="text/javascript" src="js/jquery-1.11.1.js"></script>
+        <title>html</title>
+        <script type="text/javascript">
+            function f1(){
+                $('tbody tr:even').css('background-color','#fff8dc');
+                $('tbody tr:odd').css('background-color','#yellow');
+            }
+            function f2(){
+                $('tbody tr:contains(王五)')
+                        .css('background-color','yellow');
+            }
+            function f3(){
+                $('tbody tr:eq(1) td:eq(1)')
+                        .css('background-color','red');
+            }
+        </script>
+    </head>
+    <body onload="f1()">
+        <table width="50%" border="1" cellpadding="0" cellspacing="0">
+            <caption style="font-weight: 800">员工信息</caption>
+            <thead>
+                <tr>
+                    <th>姓名</th><th>薪水</th><th>年龄</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>张三</td><td>20000</td><td>23</td></tr>
+                <tr><td>李四</td><td>22000</td><td>22</td></tr>               
+                <tr><td>王五</td><td>24000</td><td>24</td></tr>               
+                <tr><td>赵六</td><td>26000</td><td>22</td></tr>
+            </tbody>
+        </table>
+        <input type="button" value="click1" onclick="f2()"/>
+        <input type="button" value="click2" onclick="f3()"/>
+    </body>
+</html>

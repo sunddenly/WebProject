@@ -1,0 +1,25 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<script type="text/javascript" src="js/jquery-1.11.1.js"></script>
+		<script type="text/javascript">
+			/**
+			 * 单击后，向指定位置发送异步请求，将返回的数据放入d1中显示
+			 */
+			function f1(){
+				//使用jQuery的load方法：$("数据即将显示到的节点”).load(url)
+				//当参数中只有请求的目标地址时，代表的是使用get方式向改地址发送异步请求
+				//$('#d1').load("getInfo.do");
+				//如果使用post方式向该地址提交请求，并且提交一个参数的话，提交值写在第二个参数
+				$('#d1').load("getInfo.do",{name:"Lisa",age:17});
+				
+			}
+		</script>
+
+		<title>html</title>
+	</head>
+	<body>
+		<div id="d1"></div>
+		<input onclick="f1()" type="button" value="点击"/>
+	</body>
+</html>

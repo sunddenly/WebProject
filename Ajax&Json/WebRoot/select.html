@@ -5,7 +5,23 @@
 		<script type="text/javascript" src="js/my.js"></script>
 		<script type="text/javascript" src="js/json.js"></script>
 		<script type="text/javascript">
-			
+			function change(city){
+				var xhr = getXhr();
+				xhr.onreadystatechange=function(){
+					if(xhr.readyState==4&&xhr.status==200){
+						var jstr = xhr.responseText;
+						var obj = jstr.parseJSON();
+						$("s2").innerHTML="";
+						for(i=0;i<obj.length;i++){
+							var option = new Option(obj[i].cityName,obj[i].cityValue);
+							$("s2").options[i]=option;
+						}
+					}
+				};
+				xhr.open("post","getArea.do",true);
+				xhr.setRequestHeader('content-type','application/x-www-form-urlencoded');
+				xhr.send("name="+city);
+			}
 		</script>
 	</head>
 	<body>

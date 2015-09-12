@@ -1,0 +1,37 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<script type="text/javascript" src="js/jquery-1.11.1.js"></script>
+		<script type="text/javascript" src="js/Iterator.js"></script>
+		<script type="text/javascript">
+			function f1(){
+				//使用each实现对象遍历
+				$('#d1 div').each(function(i){
+					//this为每次循环得到的一个DOM对象，使用$()转为Jquery对象
+					//alert($(this).html());
+					$(this).html("这是第"+(i+1)+"个DIV");
+				});
+			}
+		</script>
+		<title>html</title>
+	</head>
+	<body>
+		<!--
+			遍历节点
+			children()/children(selector): 只考虑子元素，不考虑其他后代
+			next()/next(selector): 下一个兄弟
+			prev()/prev(selector): 上一个兄弟
+			siblings()/siblings(selector):其他兄弟
+			find(selector)：查找满足选择器的所有后代
+			parent()：父节点，没有选择器
+		-->
+		<div id="d1">
+			<div id="d2">Hello 1</div>
+			<div id="d3">Hello 2</div>
+			<div id="d4">Hello 3</div>
+			<p>Hello 4</p>
+		</div>
+		<a href="javascript:;" id="a1">遍历节点</a>
+		<input type="button" value="Click　Me" onclick="f1()"/>
+	</body>
+</html>

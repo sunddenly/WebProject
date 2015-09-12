@@ -1,0 +1,73 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<script type="text/javascript" src="js/jquery-1.11.1.js"></script>
+		<title>html</title>
+		<script type="text/javascript">
+			function f1(){
+				//id选择器
+				$("#d1").css("font-size","30px");
+			}
+			function f2(){
+				//class选择器
+				$(".s1").css("font-size","30px");
+			}
+			function f3(){
+				//元素选择器
+				$("p").css("font-size","30px");
+				//$("div").css("color","red");
+			}
+			function f4(){
+				//合并选择器
+				$("#d1,p").css("font-size","30px");
+			}
+			function f5(){
+				//*选择器
+				$("*").css("font-size","30px");
+			}
+			function f6(){
+				//层次选择器
+				$("#d1 div").css("font-size","30px");
+			}
+			function f7(){
+				//直接子节点选择器
+				$("#d3>p").css("font-size","30px");
+			}
+			function f8(){
+				//兄弟节点选择器
+				$(".s2+div").css("font-size","30px");
+			}
+			function f9(){
+				//所有兄弟节点选择器
+				$(".s2~div").css("font-size","30px");
+			}
+		</script>
+	</head>
+	<body>
+		<div id="d1">Hello Jquery
+			<div id="d2">hello</div>
+			<div class="s1">dadad</div>
+			<p>gdgfdg</p>
+		</div>
+		<hr/>
+		<div id="d3">www
+			<div class="s2">ssh1</div>
+			<div class="s3">ssh2</div>
+			<div><p class="s3">dadad</p></div>
+			<p>gdgfdg</p>
+		</div>
+		<hr/>
+		<div class="s1">Hello java</div>
+		<div class="s1">Hello ajax</div>
+		<p>Hello Servlet</p>
+		<input onclick="f1()" type="button" value="id选择器"/>
+		<input onclick="f2()" type="button" value="class选择器"/>
+		<input onclick="f3()" type="button" value="元素选择器"/>
+		<input onclick="f4()" type="button" value="合并选择器"/>
+		<input onclick="f5()" type="button" value="*选择器"/>
+		<input onclick="f6()" type="button" value="层次选择器"/>
+		<input onclick="f7()" type="button" value="直接子节点选择器"/>
+		<input onclick="f8()" type="button" value="兄弟节点选择器"/>
+		<input onclick="f9()" type="button" value="所有兄弟节点选择器"/>
+	</body>
+</html>
