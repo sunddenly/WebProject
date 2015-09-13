@@ -1,0 +1,69 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>Insert title here</title>
+		<script type="text/javascript">
+			function getXhr(){
+				var xhr = null;
+				if(window.XMLHttpRequest){
+					xhr = new XMLHttpRequest();
+				}else{
+					xhr = new ActiveXObject("Microsoft.XMLHttp");
+				}
+				return xhr;
+			}
+			//验证用户名
+			function checkName(){
+				//1. 获取用输入用户名
+				var str = document.getElementById("uname").value;
+				//2. 使用ajax将用户名发送到服务器端进行验证
+				var xhr = getXhr();
+				xhr.onreadystatechange = function(){
+					if(xhr.readyState==4&&xhr.status==200){
+						//处理返回文本
+						var str = xhr.responseText;
+						//获取用于显示文本的span标记
+						var spanObj = document.getElementById("msg");
+						//赋值
+						spanObj.innerHTML = str;
+					}
+				};
+				xhr.open("post","checkName.do",true);
+				xhr.setRequestHeader("content-type",
+					"application/x-www-form-urlencoded");
+				xhr.send("name="+str);
+			}
+			//get方式提交
+			function checkName1(){
+				//1. 获取用输入用户名
+				var str = document.getElementById("uname").value;
+				//2. 使用ajax将用户名发送到服务器端进行验证
+				var xhr = getXhr();
+				xhr.onreadystatechange = function(){
+					if(xhr.readyState==4&&xhr.status==200){
+						//处理返回文本
+						var str = xhr.responseText;
+						//获取用于显示文本的span标记
+						var spanObj = document.getElementById("msg");
+						//赋值
+						spanObj.innerHTML = str;
+					}
+				};
+				//使用js语言提供的编码方法对地址进行编码
+				var uri = encodeURI("checkName.do?name="+str);
+				xhr.open("get",uri,true);
+				xhr.setRequestHeader("content-type",
+					"application/x-www-form-urlencoded");
+				xhr.send(null);
+			}
+		</script>
+	</head>
+	<body>
+		<form action="" method="post">
+			username: <input name="uname" id="uname" onblur="checkName1()"/>
+			<span id="msg"></span><br/>
+			password: <input type="password" id="pwd"/><br/>
+			<input type="submit" value="注册"/><br/>
+		</form>
+ 	</body>
+</html>

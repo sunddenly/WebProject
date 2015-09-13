@@ -1,0 +1,29 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<script type="text/javascript" src="js/jquery-1.11.1.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				//页面加载时，为两个两家
+				$('.s1').click(function(){
+					var eId = $(this).parent().siblings().eq(0).text();
+					$(this).next().load('salary.do','eId='+eId);
+				});
+			});
+		</script>
+		<title>html</title>
+	</head>
+	<body>
+		<table width="50%" border="1" cellspacing="0" cellpadding="0">
+			<tr>
+				<td>员工号</td><td>员工姓名</td><td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td>T10001</td> <td>张三</td> <td><a href="javascript:;" class="s1">显示工资明细</a><div></div></td>
+			</tr>
+			<tr>
+				<td>T10001</td> <td>李四</td> <td><a href="javascript:;" class="s1">显示工资明细</a><div></div></td>
+			</tr>
+		</table>
+	</body>
+</html>

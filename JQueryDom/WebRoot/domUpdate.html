@@ -1,0 +1,53 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<script type="text/javascript" src="js/jquery-1.11.1.js"></script>
+		<script type="text/javascript">
+			function f1(){
+				var $obj = $('<div>猜对了,在这里</div>');
+				//$('body').append($obj);
+				$('body').prepend($obj);
+			}
+			function f2(){
+				$('body').append('<div>猜对了，div在这里</div>');
+			}
+			function f3(){
+				$('ul').after('<p>Hello JQuery</p>');
+				//$('ul').before('<p>Hello JQuery</p>');
+			}
+			function f4(){
+				$('ul li:eq(1)').remove();
+				//$('ul li:eq(1)').empty();
+			}
+			function f5(){
+				$('ul li').remove("#12")
+			}
+
+
+		</script>
+		<title>html</title>
+	</head>
+	<body>
+		<!--
+			创建：￥（html)
+			插入节点：
+					append():作为最后一个孩子节点添加进来
+					prepend():作为第一个孩子节点添加进来
+					after():作为下一个兄弟节点添加进来
+					before:作为上一个兄弟节点添加进来
+			删除节点：
+					remove()
+					remove(selector)
+					empty():清空节点
+		-->
+		<a href="javascript:;" onclick="f1()">DIV的内容在哪里</a>
+		<ul>
+			<li>Item1</li>
+			<li id="12">Item2</li>
+			<li>Item3</li>
+		</ul>
+	<input type="button" value="插入" onclick="f3()"/>
+	<input type="button" value="删除" onclick="f5()"/>
+
+	</body>
+</html>

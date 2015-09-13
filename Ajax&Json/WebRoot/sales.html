@@ -1,0 +1,43 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>Insert title here</title>
+		<style type="text/css">
+			#d1{
+				width:500px;
+				height:180px;
+				background-color: #fff8dc;
+				border: 1px solid red;
+				margin-left: 350px;
+				margin-top: 50px;
+			}
+		</style>
+		<script type="text/javascript" src="js/json.js"></script>
+		<script type="text/javascript" src="js/my.js"></script>
+		<script type="text/javascript">
+			function f1(){
+				setInterval("f2()",5000);
+			}
+			function f2(){
+				var xhr = getXhr();
+				xhr.onreadystatechange=function(){
+					var div = $("d1");
+					if(xhr.readyState==4&&xhr.status==200){
+						var jstr = xhr.responseText;
+						var ary = jstr.parseJSON();
+						var saleInfo = "当前最好的产品是：<br/>";
+						for(i=0;i<ary.length;i++){
+							saleInfo += '商品名称：'+ary[i].prodName+'销量：'+ary[i].qty+'<br/>';
+						}
+						div.innerHTML=saleInfo;
+					}
+				};
+				xhr.open("get","sale.do",true);
+				xhr.send(null);
+			}
+		</script>
+	</head>
+	<body onload="f2()">
+		<div id="d1"></div>
+	</body>
+</html>

@@ -1,0 +1,31 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>Insert title here</title>
+		<script type="text/javascript" src="js/json.js"></script>
+		<script type="text/javascript">
+			function f1(){
+				/**
+				 * 使用json.js文件中提供的方法实现js对象与json字符串之间的转换
+				 * obj.toJSONString()
+				 */
+				 var obj = {name:"Luffy",age:17};
+				 var str = obj.toJSONString();
+				 alert(str);
+			}
+			function f2(){
+				/**
+				 * 使用json.js文件中提供的方法实现json与json字符串之间的转换
+				 * obj.parseJSON()
+				 */
+				 var str = '{"name":"Luffy","age":17}';
+				 var obj = str.parseJSON();
+				 alert(obj.name);
+			}
+		</script>
+	</head>
+	<body>
+		<input type="button" onclick="f1()" value="obj至String"/>
+		<input type="button" onclick="f2()" value="String至obj"/>
+	</body>
+</html>

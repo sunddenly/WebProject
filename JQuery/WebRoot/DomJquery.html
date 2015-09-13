@@ -1,0 +1,38 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>demo.html</title>
+		<script type="text/javascript" src="js/jquery-1.11.1.js"></script>
+		<script type="text/javascript">
+			function f1(){
+				var dom = document.getElementById("d1");
+				dom.innerHTML="Hello DOM";
+			}
+			function f2(){
+				/**
+				  * html()包含子标记
+				  * text()不包含子标记
+				  */
+				$("#d1").html("Hello JQuery");
+			}
+			function f3(){
+				//Jquery转换成dom
+				var dom = $("#d1").get(0);
+				dom.innerHTML="Jquery to Dom"
+			}
+			function f4(){
+				//Dom转换成JQuery
+				var dom = document.getElementById("d1");
+				var x = $(dom).html("JQuery to dom");
+				x.css("font-size","30px");
+			}
+		</script>
+	</head>
+	<body>
+		<div id="d1">Hello Servlet</div>
+		<input onclick="f1()" type="button" value="Dom" />
+		<input onclick="f2()" type="button" value="JQuery" />
+		<input onclick="f3()" type="button" value="j2d" />
+		<input onclick="f4()" type="button" value="d2j" />
+	</body>
+</html>

@@ -1,0 +1,37 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>select.html</title>
+		<script type="text/javascript" src="js/my.js"></script>
+		<script type="text/javascript" src="js/json.js"></script>
+		<script type="text/javascript">
+			function change(city){
+				var xhr = getXhr();
+				xhr.onreadystatechange=function(){
+					if(xhr.readyState==4&&xhr.status==200){
+						var jstr = xhr.responseText;
+						var obj = jstr.parseJSON();
+						$("s2").innerHTML="";
+						for(i=0;i<obj.length;i++){
+							var option = new Option(obj[i].cityName,obj[i].cityValue);
+							$("s2").options[i]=option;
+						}
+					}
+				};
+				xhr.open("post","getArea.do",true);
+				xhr.setRequestHeader('content-type','application/x-www-form-urlencoded');
+				xhr.send("name="+city);
+			}
+		</script>
+	</head>
+	<body>
+		<select id="s1" style="width: 120px" onchange="change(this.value)">
+			<option value="sh">上海</option>
+			<option value="bj">北京</option>
+			<option value="tj">天津</option>
+		</select>
+		<select id="s2" style="width: 120px">
+		
+		</select>
+	</body>
+</html>

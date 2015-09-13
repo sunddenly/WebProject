@@ -1,0 +1,22 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>a1.html</title>
+		<script type="text/javascript">
+			/*创建XMLHttpRequest对象*/
+			function getXhr(){
+				var xhr = null;
+				//区分浏览器
+				if(window.XMLHttpRequest){
+					xhr = new XMLHttpRequest();//非IE浏览器
+				}else{
+					xhr = new ActiveXObject('Microsoft.XMLHttp');//IE浏览器
+				}
+				return xhr;
+			}
+		</script>
+	</head>
+	<body>
+		<a href="javascript:;" onclick="alert(getXhr())">创建ajax对象</a>
+	</body>
+</html>

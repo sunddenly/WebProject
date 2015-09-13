@@ -1,0 +1,37 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>a3.html</title>
+		<script type="text/javascript">
+			//创建ajax对象
+			function getXhr(){
+				var xhr = null;
+				if(window.XMLHttpRequest){
+					xhr = new XMLHttpRequest();
+				}else{
+					xhr = new ActiveXObject('Microsoft.XMLHttp');
+				}
+				return xhr;
+			}
+			//发送post文本
+			function postText(){
+				//1. 创建ajax对象
+				var xhr = getXhr();
+				//2. 创建请求
+				xhr.open('post','postInfo.do',true);
+				xhr.setRequestHeader('content-type','application/x-www-form-urlencoded');
+				//3. 设置回调还函数
+				xhr.onreadystatechange = function(){
+					if(xhr.readyState==4&&xhr.status==200){
+						alert(xhr.responseText);
+					}
+				}
+				//4. 发送请求
+				xhr.send("uname=Dr");
+			}
+		</script>
+	</head>
+	<body>
+		<input type="button" value="提交" onclick="postText()"/>
+	</body>
+</html>
