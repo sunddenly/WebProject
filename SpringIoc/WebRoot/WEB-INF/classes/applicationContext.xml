@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.2.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.2.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa-1.3.xsd">
+	<!-- applicationContext.xml保存在src文件夹中 -->
+	<!-- 一个Bean表示一个对象,
+		 id: 该对象的唯一标识
+		 class: 对象所属的类  -->
+	<bean id="f1" class="spring.createBean.Foo">
+	</bean>
+	<!-- 容器直接调用类的构造方法创建对象 -->
+	<bean id="f2" class="spring.createBean.Foo">
+	</bean>
+	<!-- 容器直接调用类的静态工厂方法factory-method来返回对象 -->
+	<bean id="c" class="java.util.Calendar" factory-method="getInstance">
+	</bean>
+	<!-- 
+		singleton: 只创建一个对象，每次调用getBean()都返回相同的对象
+		prototype: 每次调用getBean时，都创建一个新的对象
+	 -->
+	<bean id="b" class="spring.scope.Bar" scope="prototype" >
+	</bean>
+	<bean id="g" class="spring.callback.Goo" init-method="f1" destroy-method="f2">
+	</bean>
+	<bean id="m" class="spring.scope.Moo" lazy-init="true">
+	</bean>	
+	
+	<bean id="empDao" class="spring.assembly.EmpDao">
+	</bean>	
+	<bean id="deptDao" class="spring.assembly.DeptDao">
+	</bean>	
+	<!-- 通过set方法装配empService
+		 name属性：属性值xxx,相当于调用setXxx()
+		 ref属性：另外一个对象的id，将id为empDao,通过setEmpDao方法设置给empService
+	 -->
+	<bean id="empService" class="spring.assembly.EmpService">
+		<property name="empDao" ref="empDao"></property>
+		<property name="deptDao" ref="deptDao"></property>
+	</bean>	
+	<bean id="empService2" class="spring.assembly.EmpService">
+		<!-- 用于配置构造器的参数 -->
+		<constructor-arg>
+			<!-- bean标记不能引用已经创建好的对象 -->
+			<!-- bean标记表示创建一个新对象 -->
+			<bean class= "spring.assembly.EmpDao"></bean>
+		</constructor-arg>
+		<constructor-arg>
+			<bean class= "spring.assembly.DeptDao"></bean>
+		</constructor-arg>
+	</bean>	
+	<bean id="empService3" class="spring.assembly.EmpService">
+		<!-- 配置构造器的参数 -->
+		<constructor-arg index="0" ref="empDao"/>
+		<constructor-arg index="1" ref="deptDao"/>
+	</bean>	
+	<bean id="jdbcEmpDao" class="case1.JdbcEmpDao">
+	</bean>
+	<bean id="addEmpService" class="case1.AddEmpService">
+		<property name="dao" ref="jdbcEmpDao"></property>
+	</bean>
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+
+

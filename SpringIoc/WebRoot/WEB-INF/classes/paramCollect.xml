@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:tx="http://www.springframework.org/schema/tx" 
+		xmlns:aop="http://www.springframework.org/schema/aop"
+		xmlns:context="http://www.springframework.org/schema/context" 
+		xmlns:jee="http://www.springframework.org/schema/jee"
+		xsi:schemaLocation="
+			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+			http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+			http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd">
+	<bean id="m1" class="param.collect.MessageBean">
+		<property name="moduleName" >
+			<value>Jboss</value>
+		</property>
+		<property name="pageSize" >
+			<value>10</value>
+		</property>
+		<property name="username" >
+			<value>root</value>
+		</property>
+		<property name="password" >
+			<value>hadoop</value>
+		</property>
+		<property name="someList">
+			<list>
+				<value>北京</value>
+				<value>上海</value>
+				<value>广州</value>
+			</list>
+		</property>
+		<property name="someSet">
+			<set>
+				<value>Jack chen</value>
+				<value>Martin lu</value>
+				<value>Luffy Do</value>
+			</set>
+		</property>
+		<property name="someMap">
+			<map>
+				<entry key="1001" value="EJB"></entry>
+				<entry key="1002" value="Struct"></entry>
+				<entry key="1003" value="Spring"></entry>
+			</map>
+		</property>
+		<property name="someProps">
+			<props>
+				<prop key="username">root</prop>
+				<prop key="password">123</prop>
+			</props>
+		</property>
+	</bean>
+</beans>
