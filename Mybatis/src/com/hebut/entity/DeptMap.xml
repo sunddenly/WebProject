@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.hebut.mapper.DeptMapper">
+	<insert id="addDept" parameterType="com.hebut.entity.Dept">
+		insert into dept_ values(#{deptno},#{dname},#{loc})
+	</insert>
+	<update id="updateDept" parameterType="com.hebut.entity.Dept">
+		update dept_ set dname=#{dname},loc=#{loc}
+		where deptno=#{deptno}
+	</update>
+	<delete id="deleteDept" parameterType="int">
+		delete from dept_ where deptno=#{no}
+	</delete>
+	<!-- 单行记录查询 -->
+	<select id="findById" parameterType="int" resultType="com.hebut.entity.Dept">
+		select deptno,dname,loc from dept_ where deptno=#{no}
+	</select>
+	<!-- 取单行部分数据 -->
+	<select id="findByIdp" parameterType="int" resultType="java.util.HashMap">
+		select deptno,dname from dept_ where deptno=#{no}
+	</select>
+	<!-- 多行记录查询 -->
+	<select id="findAll" resultType="com.hebut.entity.Dept">
+		select deptno,dname,loc from dept_
+	</select>
+	<!-- 分页查询 -->
+	<select id="findPage" resultType="com.hebut.entity.Dept">
+		select deptno,dname,loc from dept_ ORDER BY deptno limit 0,3
+	</select>
+	<!-- 字段名与java实体属性对不上 
+		 1. 使用resultMap
+		 2. 使用别名
+	-->
+	<resultMap id="myDeptMap" type="com.hebut.entity.myDept">
+		<result property="no" column="deptno"/>
+		<result property="name" column="dname"/>
+		<result property="loc" column="loc"/>
+	</resultMap>
+	<select id="findAll1" resultMap="myDeptMap">
+		select deptno,dname,loc from dept_
+	</select>
+</mapper>

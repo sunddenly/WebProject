@@ -1,0 +1,4 @@
+return new ModelAndView(new RedirectView("page"))
+return "redirect:login"  重定向到login.jsp
+return "redirect:toLogin.from"----> 以重定向方式发送toLogin.from请求---->login.jsp
+
