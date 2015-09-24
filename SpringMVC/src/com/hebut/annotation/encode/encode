@@ -1,0 +1,4 @@
+request.setCharacterEncoding("utf-8")
+request.getParameter()
+ 
+login.from ---> filter---->DispatherServet---->Controller
