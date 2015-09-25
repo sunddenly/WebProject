@@ -6,4 +6,7 @@
 	<select id="findAll" resultType="com.hebut.entity.Emp">
 		select * from emp_ order by empno
 	</select>
+		<delete id="deleteEmp" parameterType="int">
+		delete from emp_ where empno=#{no}
+	</delete>
 </mapper>

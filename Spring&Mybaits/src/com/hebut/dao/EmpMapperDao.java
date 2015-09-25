@@ -7,4 +7,5 @@ import com.hebut.entity.Emp;
 @MybatisDao
 public interface EmpMapperDao {
 	public List<Emp> findAll();
+	public void deleteEmp(int id);
 }
