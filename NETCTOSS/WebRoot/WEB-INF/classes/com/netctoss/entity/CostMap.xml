@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.netctoss.dao.CostMapperDao">
+	<!-- 多行记录查询 -->
+	<select id="findAll" resultType="com.netctoss.entity.Cost">
+		select * from cost order by cost_id
+	</select>
+	<delete id="deleteCost" parameterType="int">
+		delete from cost where cost_id=#{cost_id}
+	</delete>
+	<insert id="addCost" parameterType="com.netctoss.entity.Cost">
+		insert into cost(cost_id,name,base_duration,base_cost,unit_cost,status,descr,creatime,startime,cost_type)
+		values(null,#{name},#{base_duration},#{base_cost},#{unit_cost},1,#{descr},default,null,#{cost_type})
+	</insert>
+</mapper>
