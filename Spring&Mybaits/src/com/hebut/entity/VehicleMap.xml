@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.hebut.dao.VehicleMapperDao">
+	<select id="findAll" resultMap="vehicleMap">
+		select * from car_ 
+	</select>
+	<resultMap type="com.hebut.entity.Vehicle" id="vehicleMap">
+		<id property="id" column="id"/>
+		<result property="name" column="name"/>
+		<result property="color" column="color"/>
+		<!-- 鉴别器：利用type字段进行区分 -->
+		<discriminator javaType="java.lang.String" column="type">
+			<case value="T" resultType="com.hebut.entity.Truck">
+				<result property="boxSize" column="boxSize"/>
+			</case>
+			<case value="C" resultType="com.hebut.entity.Car">
+				<result property="doorSize" column="doorSize"/>
+			</case>
+		</discriminator>
+	</resultMap>
+</mapper>

@@ -6,4 +6,50 @@
 	<select id="findAll" resultType="com.hebut.entity.Dept">
 		select deptno,dname,loc from dept_
 	</select>
+	<select id="findAll1" resultMap="deptMap1">
+		select d.deptno,d.dname,d.loc,e.empno,e.ename,e.job,e.mgr,e.hiredate,e.sal,e.comm
+		from dept_ d join emp_ e on (d.deptno=e.deptno)
+	</select>
+	
+	<select id="findById" parameterType="int" resultMap="deptMap">
+		select * from dept_ where deptno=#{id}
+	</select>
+	<resultMap type="com.hebut.entity.Dept" id="deptMap">
+		<collection property="emps" 
+			javaType="java.util.ArrayList"
+			ofType="com.hebut.entity.Emp"
+			select="selectEmps" column="deptno">
+		</collection>
+	</resultMap>
+	<select id="selectEmps" 
+			parameterType="int"
+			resultType="com.hebut.entity.Emp">
+		select * from emp_ where deptno=#{id}
+	</select>
+	
+	<!-- 用一个复杂的SQL -->
+	<select id="findById1"
+			parameterType="int"
+			resultMap="deptMap1">
+		select d.deptno,d.dname,d.loc,e.empno,e.ename,e.job,e.mgr,e.hiredate,e.sal,e.comm
+		from dept_ d join emp_ e on (d.deptno=e.deptno)
+		where d.deptno=#{id}
+	</select>
+	<resultMap id="deptMap1"
+			type="com.hebut.entity.Dept">
+		<id property="deptno" column="deptno"/>
+		<result property="dname" column="dname"/>
+		<result property="loc" column="loc"/>
+		<collection property="emps"
+			ofType="com.hebut.entity.Emp"
+			javaType="java.util.ArrayList">
+				<id property="empno" column="empno"/>
+				<result property="ename" column="ename"/>
+				<result property="job" column="job"/>
+				<result property="mgr" column="mgr"/>
+				<result property="hiredate" column="hiredate"/>
+				<result property="sal" column="sal"/>
+				<result property="comm" column="comm"/>
+		</collection>
+	</resultMap>
 </mapper>

@@ -38,7 +38,6 @@
                     inputArray[4].className = "width100";
                     inputArray[5].readOnly = false;
                     inputArray[5].className = "width100";
-                    inputArray[5].value="2";
                     inputArray[6].readOnly = false;
                     inputArray[6].className = "width100";
                 }
@@ -93,8 +92,10 @@
                 <div class="input_info fee_type">
                     <input type="radio" name="cost_type" id="monthly" value="1" onclick="feeTypeChange(1);" />
                     <label for="monthly">包月</label>
-                    <input type="radio" name="cost_type" checked="checked" id="package" value="2" onclick="feeTypeChange(2);" />
+                    
+                    <input type="radio" name="cost_type" id="package" value="2" checked="checked" onclick="feeTypeChange(2);" />
                     <label for="package">套餐</label>
+                    
                     <input type="radio" name="cost_type" id="timeBased" value="3" onclick="feeTypeChange(3);" />
                     <label for="timeBased">计时</label>
                 </div>

@@ -9,8 +9,28 @@
 	<delete id="deleteCost" parameterType="int">
 		delete from cost where cost_id=#{cost_id}
 	</delete>
-	<insert id="addCost" parameterType="com.netctoss.entity.Cost">
-		insert into cost(cost_id,name,base_duration,base_cost,unit_cost,status,descr,creatime,startime,cost_type)
-		values(null,#{name},#{base_duration},#{base_cost},#{unit_cost},1,#{descr},default,null,#{cost_type})
+	<insert id="addCost" parameterType="com.netctoss.entity.Cost"
+		keyProperty="cost_id" useGeneratedKeys="true">
+		insert into cost(name,base_duration,base_cost,unit_cost,status,descr,creatime,startime,cost_type)
+		values(#{name},#{base_duration},#{base_cost},#{unit_cost},1,#{descr},default,null,#{cost_type})
 	</insert>
+	<select id="findById" parameterType="int" resultType="com.netctoss.entity.Cost">
+		select * from cost where cost_id=#{id}
+	</select>
+	<update id="updateCost" parameterType="com.netctoss.entity.Cost">
+		update cost set name=#{name},base_duration=#{base_duration},base_cost=#{base_cost},unit_cost=#{unit_cost},status=1,descr=#{descr},creatime=default,startime=#{startime},cost_type=#{cost_type}
+		where cost_id=#{cost_id}
+	</update>
+	<update id="startFee" parameterType="int">
+		update cost set status=0,startime=defalut
+		where cost_id=#{id}
+	</update>
+	<select id="findPage" parameterType="com.netctoss.entity.Page" resultType="com.netctoss.entity.Cost">
+		select *
+		from cost
+		limit #{begin},#{pageSize}
+	</select>
+	<select id="findRows" resultType="int">
+		select count(*) from cost
+	</select>
 </mapper>

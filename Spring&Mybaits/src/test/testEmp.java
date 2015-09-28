@@ -16,9 +16,14 @@ public class testEmp {
 		ClassPathXmlApplicationContext ac = new ClassPathXmlApplicationContext(conf);
 		
 		EmpMapperDao dao = ac.getBean("empMapperDao",EmpMapperDao.class);
-		List<Emp> list = dao.findAll();
-		for (Emp emp : list) {
-			System.out.println(emp.getEmpno()+","+emp.getEname()+","+emp.getJob());
-		}
+//		List<Emp> list = dao.findAll();
+//		for (Emp emp : list) {
+//			System.out.println(emp.getEmpno()+","+emp.getEname()+","+emp.getJob());
+//		}
+		Emp emp = dao.findById(7369);
+		System.out.println(emp.getDeptno());//ʧЧ
+		System.out.println(emp.getEname());
+		System.out.println(emp.getDept().getDeptno());
+		System.out.println(emp.getDept().getDname());
 	}
 }

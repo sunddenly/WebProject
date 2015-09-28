@@ -18,12 +18,15 @@
             }
 
             //启用
-            function startFee() {
+            function startFee(id) {
             /**
              *  "/"===>"/localhost:8080/"
             **/
                 var r = window.confirm("确定要启用此资费吗？资费启用后将不能修改和删除。");
                 document.getElementById("operate_result_info").style.display = "block";
+                if(r){
+                	window.location="feestart.from?id="+id;
+                }
             }
             //删除
             function deleteFee(id) {
@@ -99,9 +102,9 @@
 	                            <td>${cost.startime}</td>
 	                            <td>${cost.status=="1"?"暂停":"开通" }</td>
 	                            <td><!-- 暂停状态才允许下面几个按钮操作 -->  
-	                            	<c:if test='${cost.status=="1"}'>
-		                                <input type="button" value="启用" class="btn_start" onclick="startFee();" />
-		                                <input type="button" value="修改" class="btn_modify" onclick="location.href='fee_modi.html';" />
+	                            	<c:if test='${cost.status=="0"}'>
+		                                <input type="button" value="启用" class="btn_start" onclick="startFee(${cost.cost_id});" />
+		                                <input type="button" value="修改" class="btn_modify" onclick="location.href='toUpdate.from?id=${cost.cost_id}';" />
 		                                <input type="button" value="删除" class="btn_delete" onclick="deleteFee(${cost.cost_id});" />
 	                            	</c:if>                              
 	                            </td>
@@ -117,13 +120,32 @@
                 </div>
                 <!--分页-->
                 <div id="pages">
-        	        <a href="#">上一页</a>
-                    <a href="#" class="current_page">1</a>
-                    <a href="#">2</a>
-                    <a href="#">3</a>
-                    <a href="#">4</a>
-                    <a href="#">5</a>
-                    <a href="#">下一页</a>
+                	<c:choose>
+                		<c:when test="${page.page>1}">
+		        	        <a href="feelist.from?page=${page.page-1}">上一页</a>
+                		</c:when>
+                		<c:otherwise>
+                			<a>上一页</a>
+                		</c:otherwise>
+                	</c:choose>
+                	<c:forEach var="i" begin="1" end="${page.totalPage}">
+                		<c:choose>
+                			<c:when test="${i==page.page}">
+			                    <a href="feelist.from?page=${i}" class="current_page">${i}</a>
+                			</c:when>
+                			<c:otherwise>
+			                    <a href="feelist.from?page=${i}">${i}</a>
+                			</c:otherwise>
+                		</c:choose>
+                	</c:forEach>
+                	<c:choose>
+                		<c:when test="${page.page<page.totalPage}">
+		        	        <a href="feelist.from?page=${page.page+1}">下一页</a>
+                		</c:when>
+                		<c:otherwise>
+                			<a>下一页</a>
+                		</c:otherwise>
+                	</c:choose>
                 </div>
             </form>
         </div>

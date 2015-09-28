@@ -23,9 +23,10 @@ public class EmpController {
 		model.addAttribute("emps", list);
 		return "emplist";//½øÈëemp_list.jsp
 	}
+	
 	@RequestMapping("/delete")
-	public String Delete(@RequestParam("id") int id){
-		System.out.println(id);
-		return null;
+	public String Delete(int id){
+		dao.deleteEmp(id);
+		return "emplist.from";
 	}
 }

@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+﻿<%@ page import="java.util.*" 
+    contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>   
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -79,56 +83,59 @@
         <!--主要区域开始-->
         <div id="main">            
             <div id="save_result_info" class="save_success">保存成功！</div>
-            <form action="" method="" class="main_form">
+            <!-- commandName指定表单显示Model中的数据 -->
+            <form:form action="feeupdate.from" method="post" commandName="cost" cssClass="main_form">
                 <div class="text_info clearfix"><span>资费ID：</span></div>
-                <div class="input_info"><input type="text" class="readonly" readonly value="1" /></div>
+                <div class="input_info">
+                	<form:input path="cost_id" cssClass="readonly" readonly="true"/>
+                </div>
+              
                 <div class="text_info clearfix"><span>资费名称：</span></div>
                 <div class="input_info">
-                    <input type="text" class="width300" value="包 20 小时"/>
+                    <form:input path="name" cssStyle="width300"/>
                     <span class="required">*</span>
                     <div class="validate_msg_short">50长度的字母、数字、汉字和下划线的组合</div>
                 </div>
+                
                 <div class="text_info clearfix"><span>资费类型：</span></div>
                 <div class="input_info fee_type">
-                    <input type="radio" name="radFeeType" id="monthly" onclick="feeTypeChange(1);" />
-                    <label for="monthly">包月</label>
-                    <input type="radio" name="radFeeType" checked="checked" id="package" onclick="feeTypeChange(2);" />
-                    <label for="package">套餐</label>
-                    <input type="radio" name="radFeeType" id="timeBased" onclick="feeTypeChange(3);" />
-                    <label for="timeBased">计时</label>
+                    <form:radiobutton path="cost_type" value="1" label="包月" id="monthly" onclick="feeTypeChange(1);" />
+                    <form:radiobutton path="cost_type" value="2" label="套餐" id="package" onclick="feeTypeChange(2);" />
+                    <form:radiobutton path="cost_type" value="3" label="计时" id="timeBased" onclick="feeTypeChange(3);" />
                 </div>
                 <div class="text_info clearfix"><span>基本时长：</span></div>
                 <div class="input_info">
-                    <input type="text" value="" class="width100" />
+                    <form:input path="base_duration" cssClass="width100" />
                     <span class="info">小时</span>
                     <span class="required">*</span>
                     <div class="validate_msg_long">1-600之间的整数</div>
                 </div>
                 <div class="text_info clearfix"><span>基本费用：</span></div>
                 <div class="input_info">
-                    <input type="text" value="" class="width100" />
+                    <form:input path="base_cost" cssClass="width100"/>
                     <span class="info">元</span>
                     <span class="required">*</span>
                     <div class="validate_msg_long">0-99999.99之间的数值</div>
                 </div>
                 <div class="text_info clearfix"><span>单位费用：</span></div>
                 <div class="input_info">
-                    <input type="text" value="" class="width100" />
+                    <form:input path="unit_cost" cssClass="width100"/>
                     <span class="info">元/小时</span>
                     <span class="required">*</span>
                     <div class="validate_msg_long">0-99999.99之间的数值</div>
                 </div>   
-                <div class="text_info clearfix"><span>资费说明：</span></div>
+                <div class="text_info clearfix">
+                	<span>资费说明：</span>
+                </div>
                 <div class="input_info_high">
-                    <textarea class="width300 height70">没有启用的资费，可以修改除 ID 以外的所有信息
-                    </textarea>
+                    <form:textarea path="descr" cssClass="width300 height70"/>
                     <div class="validate_msg_short">100长度的字母、数字、汉字和下划线的组合</div>
                 </div>                    
                 <div class="button_info clearfix">
-                    <input type="button" value="保存" class="btn_save"  onclick="showResult();" />
+                    <input type="submit" value="保存" class="btn_save"  onclick="showResult();" />
                     <input type="button" value="取消" class="btn_save" />
                 </div>
-            </form>
+            </form:form>
         </div>
         <!--主要区域结束-->
         <div id="footer">
