@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.netctoss.dao.AdminInfoMapperDao">
+	<!-- 多行记录查询 -->
+	<select id="findByAdminCodeAndPwd" parameterType="com.netctoss.entity.AdminInfo" 
+		resultType="com.netctoss.entity.AdminInfo">
+		select * from admin_info where admin_code=#{admin_code} and password=#{password}
+	</select>
+</mapper>

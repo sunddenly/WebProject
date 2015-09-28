@@ -6,7 +6,47 @@
 	<select id="findAll" resultType="com.hebut.entity.Emp">
 		select * from emp_ order by empno
 	</select>
-		<delete id="deleteEmp" parameterType="int">
+	
+	<delete id="deleteEmp" parameterType="int">
 		delete from emp_ where empno=#{no}
 	</delete>
+	<!-- 嵌套查询 -->
+	<!-- 查询emp 返回关联结构的Emp对象 -->
+	<select id="findById"
+		parameterType="int"
+		resultMap="empMap">
+		select * from emp_ where empno=#{id}
+	</select>
+	<!-- 带有   关联属性映射   的结果类型, 为Emp中的dept关联属性指定加载操作selectDept -->
+	<resultMap id="empMap" type="com.hebut.entity.Emp">
+		<association property="dept" column="deptno"
+				javaType="com.hebut.entity.Dept" select="selectDept">
+		</association>
+	</resultMap>
+	<!-- 加载Dept对象返回 -->
+	<select id="selectDept"
+		parameterType="int"
+		resultType="com.hebut.entity.Dept">
+		select * from dept_ where deptno=#{id}
+	</select>
+	<!-- 嵌套结果映射 -->
+	<select id="findById1" parameterType="int" resultMap="empMap1">
+		select * from emp_ e join dept_ d on(e.deptno=d.deptno)
+		where empno=#{id};
+	</select>
+	<resultMap type="com.hebut.entity.Emp" id="empMap1">
+		<id property="empno" column="empno"/>
+		<result property="ename" column="ename"/>
+		<result property="job" column="job"/>
+		<result property="mgr" column="mgr"/>
+		<result property="hiredate" column="hiredate"/>
+		<result property="sal" column="sal"/>
+		<result property="comm" column="comm"/>
+		<result property="hiredate" column="hiredate"/>
+		<association property="dept" javaType="com.hebut.entity.Dept">
+			<id property="deptno" column="deptno"/>
+			<result property="dname" column="dname"/>
+			<result property="loc" column="loc"/>
+		</association>
+	</resultMap>
 </mapper>

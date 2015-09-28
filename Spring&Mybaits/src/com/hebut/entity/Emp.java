@@ -1,9 +1,10 @@
 package com.hebut.entity;
 
+import java.io.Serializable;
 import java.sql.Date;
 
 
-public class Emp {
+public class Emp implements Serializable{
 	private Integer empno;
 	private String ename;
 	private String job;
@@ -12,8 +13,17 @@ public class Emp {
 	private Double sal;
 	private Double comm;
 	private Integer deptno;
+	//追加一个部门的关联属性
+	private Dept dept;
 	
-	
+	public Dept getDept() {
+		return dept;
+	}
+
+	public void setDept(Dept dept) {
+		this.dept = dept;
+	}
+
 	public Emp() {
 		super();
 		// TODO Auto-generated constructor stub
