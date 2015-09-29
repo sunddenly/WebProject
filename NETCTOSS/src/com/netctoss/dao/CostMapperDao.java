@@ -16,4 +16,5 @@ public interface CostMapperDao {
 	public void startFee(int id);
 	public List<Cost> findPage(Page page);
 	public int findRows();
+	public Cost findByName(String name);//
 }

@@ -20,7 +20,7 @@ public class RoleListController {
 	
 	@RequestMapping("/rolelist")
 	public String execute(Model model){
-		List<Role> list = dao.findAll();
+		List<Role> list = dao.findPage();
 		model.addAttribute("roles", list);
 		return "role/rolelist";
 	}

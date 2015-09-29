@@ -22,7 +22,6 @@ public class FeeAddController {
 	@RequestMapping("/feeadd.from")
 	public String add(Cost cost){
 		dao.addCost(cost);
-		System.out.println(cost.getCost_id());
 		return "redirect:/fee/feelist.from";
 	}
 }

@@ -33,4 +33,9 @@
 	<select id="findRows" resultType="int">
 		select count(*) from cost
 	</select>
+	<select id="findByName" 
+			parameterType="java.lang.String"
+			resultType="com.netctoss.entity.Cost">
+		select * from cost  where name=#{name}
+	</select>
 </mapper>

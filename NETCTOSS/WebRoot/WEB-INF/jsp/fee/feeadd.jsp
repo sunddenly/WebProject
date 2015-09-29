@@ -6,6 +6,9 @@
         <title>达内－NetCTOSS</title>
         <link type="text/css" rel="stylesheet" media="all" href="../styles/global.css" />
         <link type="text/css" rel="stylesheet" media="all" href="../styles/global_color.css" />
+        
+       	<script type="text/javascript" src="../js/jquery-1.11.1.js"></script>
+       	
         <script language="javascript" type="text/javascript">
             //保存结果的提示
             function showResult() {
@@ -52,6 +55,84 @@
                     inputArray[6].className = "width100";
                 }
             }
+            //检测资费名称
+            var name_flag = false;//name是否通过检查
+            function checkName(){
+            	name_flag = false;
+            	//检查资费名是否为空
+            	var v_name = $("#name").val();
+            	if(v_name == ""){
+            		$("#name_error").html("资费名为空");
+            		$("#name_error").addClass("error_msg");
+            		name_flag = false;
+            		return false;//此处将fals作为submit返回值
+            	}
+            	//检查资费名是否重复
+            	//ajax(/fee/checkName.from)----->CheckNameController----->costMapperDao---->json(返回布尔值)
+            	$.ajax({
+            		type:"post",
+            		async:false,
+            		url:"checkName.from",
+            		data: {"name":v_name},
+            		success:function(ok){
+            			if(ok){
+	            			$("#name_error").html("资费名可用");
+	            			$("#name_error").removeClass("error_msg");
+	            			name_flag = true;
+	            			return true;//注意此处return true只是退出当前回调函数，没有将true作为doSubmit的返回值，因此不能阻止表单提交
+	            			
+            			}else{
+            				$("#name_error").html("资费名占用");
+            				$("#name_error").addClass("error_msg");
+            				name_flag = false;//注意此处return false只是退出当前回调函数，没有将false作为doSubmit的返回值，因此不能阻止表单提交
+            			}
+            		}
+            	});
+            	//通过检查返回true，未通过返回false
+            	//前面ajax用同步，目的是等待前面ajax请求
+            	//回调函数执行完毕在执行下面代码
+            	return name_flag;
+            	//return true允许提交
+            	//return false阻止提交
+            }
+            //检测基本时常
+            var baseDuration_flag = false;
+            function checkBaseDuration(){
+            	var baseDuration_flag = false;
+            	//套餐类型时，不能为空
+            	var v_type = $("input[name='cost_type']:checked").val();
+            	if(v_type=='2'){
+            		var v_duration = $("#base_duration").val();
+            		if(v_duration ==""){
+            			$("#base_duration_error").html("不能为空");
+            			$("#base_duration_error").addClass("error_msg");
+            			baseDuration_flag = false;
+            		}else{
+		            	//有值时，必须在1--600之间
+		            	var isNumber = isNaN(v_duration);
+		            	if(!isNumber){
+		            		if((parseInt(v_duration)>=1) && (parseInt(v_duration)<=600)){
+		            			$("#base_duration_error").html("格式正确");
+		            			$("#base_duration_error").removeClass("error_msg");
+		            			baseDuration_flag = true;
+		            		}
+		            	}
+		            	if(!baseDuration_flag){
+		            		$("#base_duration_error").html("必须在1-600之间");
+		            		$("#base_duration_error").addClass("error_msg");
+		            		baseDuration_flag = false;
+		            	}
+            		}
+            	}
+            	return baseDuration_flag;
+            }
+            
+            function doSubmit(){
+            	name_flag = checkName();
+				baseDuration_flag = checkBaseDuration();
+				var from_flag = name_flag&&baseDuration_flag;
+				return from_flag;
+            }
         </script>
     </head>
     <body>
@@ -80,13 +161,14 @@
         <!--主要区域开始-->
         <div id="main">            
             <div id="save_result_info" class="save_fail">保存失败，资费名称重复！</div>
-            <form action="feeadd.from" method="post" class="main_form">
+            <!-- feeadd.from -->
+            <form action="feeadd.from" method="post" class="main_form" onsubmit="return doSubmit()">
                 <div class="text_info clearfix">
                 <span>资费名称：</span></div>
                 <div class="input_info">
-                    <input type="text" class="width300" name="name"/>
+                    <input type="text" class="width300" name="name" id="name"/>
                     <span class="required">*</span>
-                    <div class="validate_msg_short">50长度的字母、数字、汉字和下划线的组合</div>
+                    <div class="validate_msg_short" id="name_error">50长度的字母、数字、汉字和下划线的组合</div>
                 </div>
                 <div class="text_info clearfix"><span>资费类型：</span></div>
                 <div class="input_info fee_type">
@@ -101,10 +183,10 @@
                 </div>
                 <div class="text_info clearfix"><span>基本时长：</span></div>
                 <div class="input_info">
-                    <input type="text" name="base_duration" class="width100" />
+                    <input type="text" name="base_duration" class="width100" id="base_duration"/>
                     <span class="info">小时</span>
                     <span class="required">*</span>
-                    <div class="validate_msg_long">1-600之间的整数</div>
+                    <div class="validate_msg_long" id="base_duration_error">1-600之间的整数</div>
                 </div>
                 <div class="text_info clearfix"><span>基本费用：</span></div>
                 <div class="input_info">

@@ -9,14 +9,24 @@
 		on(r.role_id=m.role_id) 
 		order by r.role_id;
 	</select>
+	<select id="findPage" resultMap="roleMap">
+		SELECT rt.role_id,rt.name,rm.module_id
+		FROM(	
+			SELECT role_id,name
+			FROM role_info
+			ORDER BY role_id 
+			LIMIT 0,3 ) 
+		rt LEFT OUTER JOIN role_module rm 
+		ON (rt.role_id=rm.role_id)
+	</select>
 	<resultMap type="com.netctoss.entity.Role" id="roleMap">
-		<id property="role_id" column="role_id"/>
-		<result property="name" column="name"/>
-		<collection property="modules" 
-			javaType="java.util.ArrayList"
-			ofType="com.netctoss.entity.RoleModule">
-			<result property="role_id" column="role_id"/>
-			<result property="module_id" column="module_id"/>
-		</collection>
+			<id property="role_id" column="role_id"/>
+			<result property="name" column="name"/>
+			<collection property="modules" 
+				javaType="java.util.ArrayList"
+				ofType="com.netctoss.entity.RoleModule">
+				<result property="role_id" column="role_id"/>
+				<result property="module_id" column="module_id"/>
+			</collection>
 	</resultMap>
 </mapper>

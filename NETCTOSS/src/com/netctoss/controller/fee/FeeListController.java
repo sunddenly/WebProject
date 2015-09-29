@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.netctoss.dao.CostMapperDao;
 import com.netctoss.entity.Cost;
@@ -14,6 +15,7 @@ import com.netctoss.entity.Page;
 
 @Controller
 @RequestMapping("/fee")
+@SessionAttributes("page")
 public class FeeListController {
 	@Resource
 	private CostMapperDao dao;

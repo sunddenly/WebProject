@@ -16,8 +16,10 @@ public class TestCostDao {
 		String conf = "com/netctoss/config/applicationContext.xml";
 		ApplicationContext ac = new ClassPathXmlApplicationContext(conf);
 		CostMapperDao dao = ac.getBean("costMapperDao",CostMapperDao.class);
-		Cost cost = new Cost();
-		cost.setName("sun");
-		dao.addCost(cost);
+//		Cost cost = new Cost();
+//		cost.setName("sun");
+//		dao.addCost(cost);
+		Cost cost = dao.findByName("5.9ÔªÌ×²Í");
+		System.out.println(cost.getName());
 	}
 }

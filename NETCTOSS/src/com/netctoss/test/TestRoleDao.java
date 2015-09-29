@@ -19,7 +19,7 @@ public class TestRoleDao {
 		String conf = "com/netctoss/config/applicationContext.xml";
 		ApplicationContext ac = new ClassPathXmlApplicationContext(conf);
 		RoleMapperDao dao = ac.getBean("roleMapperDao",RoleMapperDao.class);
-		List<Role> list = dao.findAll();
+		List<Role> list = dao.findPage();
 		for (Role role : list) {
 			System.out.println(role.getRole_id()+" "+role.getName()+role.getModulesName());
 //			System.out.println("È¨ÏÞ£º");

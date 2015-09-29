@@ -17,12 +17,15 @@ public class Role {
 	//追加方法，根据modules权限ID信息返回权限名
 	public String getModulesName(){
 		String name = "";
+		String names = "";
+		int i = 0;
 		for (RoleModule module : modules) {
 			Integer module_id = module.getModule_id();
-			name += PrivilegeReader.getPrivilegeNameById(module_id+"");
-			name +="、";
+			name = PrivilegeReader.getPrivilegeNameById(module_id+"");
+			names += (i==0)?name:"、"+name;
+			i++;
 		}
-		return name;
+		return names;
 	}
 	
 	public List<RoleModule> getModules() {
