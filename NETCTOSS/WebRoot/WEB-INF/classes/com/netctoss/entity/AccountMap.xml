@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.netctoss.dao.AccountMapperDao">
+	<select id="findByCondition" 
+		resultType="com.netctoss.entity.Account"
+		parameterType="com.netctoss.entity.AccountPage">
+		select * from account
+		<where>
+			<if test='!"*".equals(idcard_no)'>
+				idcard_no=#{idcard_no}
+			</if>
+			<if test='!"*".equals(real_name)'>
+				and real_name=#{real_name}
+			</if>
+			<if test='!"*".equals(login_name)'>
+				and login_name=#{login_name}
+			</if>
+			<if test='!"-1".equals(status)'>
+				and status=#{status}
+			</if>
+		</where>
+		order by account_id
+		limit #{begin},#{pageSize} 
+	</select>
+	
+	<select id="findRows" 
+		resultType="int"
+		parameterType="com.netctoss.entity.AccountPage">
+		select count(*) from account
+		<where>
+			<if test='!"*".equals(idcard_no)'>
+				idcard_no=#{idcard_no}
+			</if>
+			<if test='!"*".equals(real_name)'>
+				and real_name=#{real_name}
+			</if>
+			<if test='!"*".equals(login_name)'>
+				and login_name=#{login_name}
+			</if>
+			<if test='!"-1".equals(status)'>
+				and status=#{status}
+			</if>
+		</where>
+		order by account_id
+	</select>
+</mapper>

@@ -13,7 +13,17 @@ public class Role {
 	private String name;
 	//追加关联属性，用于存储相关联的role_module表
 	private List<RoleModule> modules = new ArrayList<>();
+	//追加属性用于存储权限id
+	private List<Integer> priIds;
 	
+	public List<Integer> getPriIds() {
+		return priIds;
+	}
+
+	public void setPriIds(List<Integer> priIds) {
+		this.priIds = priIds;
+	}
+
 	//追加方法，根据modules权限ID信息返回权限名
 	public String getModulesName(){
 		String name = "";

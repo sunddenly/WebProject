@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.j2eedt.core.MYECLIPSE_JAVAEE_5_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="lib" path="F:/Project/WebProject/Spring AOP/WebRoot/WEB-INF/lib/aop/aopalliance.jar"/>
+	<classpathentry kind="lib" path="F:/Project/WebProject/Spring AOP/WebRoot/WEB-INF/lib/aop/aspectjweaver.jar"/>
+	<classpathentry kind="lib" path="F:/Project/WebProject/Spring AOP/WebRoot/WEB-INF/lib/aop/spring-aop-3.2.8.RELEASE.jar"/>
+	<classpathentry kind="lib" path="F:/Project/WebProject/Spring AOP/WebRoot/WEB-INF/lib/aop/spring-aspects-3.2.8.RELEASE.jar"/>
+	<classpathentry kind="lib" path="F:/Project/WebProject/Spring AOP/WebRoot/WEB-INF/lib/ioc/commons-logging.jar"/>
+	<classpathentry kind="lib" path="F:/Project/WebProject/Spring AOP/WebRoot/WEB-INF/lib/ioc/spring-beans-3.2.8.RELEASE.jar"/>
+	<classpathentry kind="lib" path="F:/Project/WebProject/Spring AOP/WebRoot/WEB-INF/lib/ioc/spring-context-3.2.8.RELEASE.jar"/>
+	<classpathentry kind="lib" path="F:/Project/WebProject/Spring AOP/WebRoot/WEB-INF/lib/ioc/spring-core-3.2.8.RELEASE.jar"/>
+	<classpathentry kind="lib" path="F:/Project/WebProject/Spring AOP/WebRoot/WEB-INF/lib/ioc/spring-expression-3.2.8.RELEASE.jar"/>
+	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
+</classpath>

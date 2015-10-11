@@ -49,8 +49,16 @@
 		<!-- SpringMVC 配置 -->
 		<context:component-scan base-package="com.netctoss"/>
 		<mvc:annotation-driven/>
+		<!-- 将拦截的静态资源js,css等放过去 -->
+		<mvc:default-servlet-handler/>
 		<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 			<property name="prefix"  value="/WEB-INF/jsp/"/>
 			<property name="suffix"  value=".jsp"/>
 		</bean>
+		<!-- 事务控制 -->
+		<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+			<property name="dataSource" ref="mydatasource"/>
+		</bean>
+		<!-- 为了支持@Transactional -->
+		<tx:annotation-driven transaction-manager="txManager"/>
 </beans>

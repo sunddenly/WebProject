@@ -4,32 +4,33 @@
 	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.j2eedt.core.MYECLIPSE_JAVAEE_5_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="lib" path="F:/Project/JavaWeb/WebWorkSpace/WebProject/Spring&amp;Mybaits/WebRoot/WEB-INF/lib/aop/aop/aopalliance.jar"/>
-	<classpathentry kind="lib" path="F:/Project/JavaWeb/WebWorkSpace/WebProject/Spring&amp;Mybaits/WebRoot/WEB-INF/lib/aop/aop/aspectjweaver.jar"/>
-	<classpathentry kind="lib" path="F:/Project/JavaWeb/WebWorkSpace/WebProject/Spring&amp;Mybaits/WebRoot/WEB-INF/lib/aop/aop/spring-aop-3.2.8.RELEASE.jar"/>
-	<classpathentry kind="lib" path="F:/Project/JavaWeb/WebWorkSpace/WebProject/Spring&amp;Mybaits/WebRoot/WEB-INF/lib/aop/aop/spring-aspects-3.2.8.RELEASE.jar"/>
-	<classpathentry kind="lib" path="F:/Project/JavaWeb/WebWorkSpace/WebProject/Spring&amp;Mybaits/WebRoot/WEB-INF/lib/dbcp/dbcp/commons-collections-3.1.jar"/>
-	<classpathentry kind="lib" path="F:/Project/JavaWeb/WebWorkSpace/WebProject/Spring&amp;Mybaits/WebRoot/WEB-INF/lib/dbcp/dbcp/commons-dbcp-1.2.2.jar"/>
-	<classpathentry kind="lib" path="F:/Project/JavaWeb/WebWorkSpace/WebProject/Spring&amp;Mybaits/WebRoot/WEB-INF/lib/dbcp/dbcp/commons-pool.jar"/>
-	<classpathentry kind="lib" path="F:/Project/JavaWeb/WebWorkSpace/WebProject/Spring&amp;Mybaits/WebRoot/WEB-INF/lib/jdbc/jdbc/spring-jdbc-3.2.8.RELEASE.jar"/>
-	<classpathentry kind="lib" path="F:/Project/JavaWeb/WebWorkSpace/WebProject/Spring&amp;Mybaits/WebRoot/WEB-INF/lib/jdbc/jdbc/spring-tx-3.2.8.RELEASE.jar"/>
-	<classpathentry kind="lib" path="F:/Project/JavaWeb/WebWorkSpace/WebProject/Spring&amp;Mybaits/WebRoot/WEB-INF/lib/mysql/mysql-connector-java-5.1.8-bin.jar"/>
-	<classpathentry kind="lib" path="F:/Project/JavaWeb/WebWorkSpace/WebProject/Spring&amp;Mybaits/WebRoot/WEB-INF/lib/spring/commons-logging.jar"/>
-	<classpathentry kind="lib" path="F:/Project/JavaWeb/WebWorkSpace/WebProject/Spring&amp;Mybaits/WebRoot/WEB-INF/lib/spring/hibernate-validator-4.2.0.Final.jar"/>
-	<classpathentry kind="lib" path="F:/Project/JavaWeb/WebWorkSpace/WebProject/Spring&amp;Mybaits/WebRoot/WEB-INF/lib/spring/jstl-1.2.jar"/>
-	<classpathentry kind="lib" path="F:/Project/JavaWeb/WebWorkSpace/WebProject/Spring&amp;Mybaits/WebRoot/WEB-INF/lib/spring/log4j-1.2.16.jar"/>
-	<classpathentry kind="lib" path="F:/Project/JavaWeb/WebWorkSpace/WebProject/Spring&amp;Mybaits/WebRoot/WEB-INF/lib/spring/mybatis-3.2.5.jar"/>
-	<classpathentry kind="lib" path="F:/Project/JavaWeb/WebWorkSpace/WebProject/Spring&amp;Mybaits/WebRoot/WEB-INF/lib/spring/mybatis-spring-1.2.2.jar"/>
-	<classpathentry kind="lib" path="F:/Project/JavaWeb/WebWorkSpace/WebProject/Spring&amp;Mybaits/WebRoot/WEB-INF/lib/spring/slf4j-api-1.6.1.jar"/>
-	<classpathentry kind="lib" path="F:/Project/JavaWeb/WebWorkSpace/WebProject/Spring&amp;Mybaits/WebRoot/WEB-INF/lib/spring/slf4j-log4j12-1.6.1.jar"/>
-	<classpathentry kind="lib" path="F:/Project/JavaWeb/WebWorkSpace/WebProject/Spring&amp;Mybaits/WebRoot/WEB-INF/lib/spring/spring-beans-3.2.8.RELEASE.jar"/>
-	<classpathentry kind="lib" path="F:/Project/JavaWeb/WebWorkSpace/WebProject/Spring&amp;Mybaits/WebRoot/WEB-INF/lib/spring/spring-context-3.2.8.RELEASE.jar"/>
-	<classpathentry kind="lib" path="F:/Project/JavaWeb/WebWorkSpace/WebProject/Spring&amp;Mybaits/WebRoot/WEB-INF/lib/spring/spring-core-3.2.8.RELEASE.jar"/>
-	<classpathentry kind="lib" path="F:/Project/JavaWeb/WebWorkSpace/WebProject/Spring&amp;Mybaits/WebRoot/WEB-INF/lib/spring/spring-expression-3.2.8.RELEASE.jar"/>
-	<classpathentry kind="lib" path="F:/Project/JavaWeb/WebWorkSpace/WebProject/Spring&amp;Mybaits/WebRoot/WEB-INF/lib/spring/spring-web-3.2.8.RELEASE.jar"/>
-	<classpathentry kind="lib" path="F:/Project/JavaWeb/WebWorkSpace/WebProject/Spring&amp;Mybaits/WebRoot/WEB-INF/lib/spring/spring-webmvc-3.2.8.RELEASE.jar"/>
-	<classpathentry kind="lib" path="F:/Project/JavaWeb/WebWorkSpace/WebProject/Spring&amp;Mybaits/WebRoot/WEB-INF/lib/spring/standard-1.1.2.jar"/>
-	<classpathentry kind="lib" path="F:/Project/JavaWeb/WebWorkSpace/WebProject/Spring&amp;Mybaits/WebRoot/WEB-INF/lib/spring/validation-api-1.0.0.GA.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JDK1.7"/>
+	<classpathentry kind="lib" path="F:/Project/WebProject/Spring&amp;Mybaits/WebRoot/WEB-INF/lib/aop/aop/aopalliance.jar"/>
+	<classpathentry kind="lib" path="F:/Project/WebProject/Spring&amp;Mybaits/WebRoot/WEB-INF/lib/aop/aop/aspectjweaver.jar"/>
+	<classpathentry kind="lib" path="F:/Project/WebProject/Spring&amp;Mybaits/WebRoot/WEB-INF/lib/aop/aop/spring-aop-3.2.8.RELEASE.jar"/>
+	<classpathentry kind="lib" path="F:/Project/WebProject/Spring&amp;Mybaits/WebRoot/WEB-INF/lib/aop/aop/spring-aspects-3.2.8.RELEASE.jar"/>
+	<classpathentry kind="lib" path="F:/Project/WebProject/Spring&amp;Mybaits/WebRoot/WEB-INF/lib/dbcp/dbcp/commons-collections-3.1.jar"/>
+	<classpathentry kind="lib" path="F:/Project/WebProject/Spring&amp;Mybaits/WebRoot/WEB-INF/lib/dbcp/dbcp/commons-dbcp-1.2.2.jar"/>
+	<classpathentry kind="lib" path="F:/Project/WebProject/Spring&amp;Mybaits/WebRoot/WEB-INF/lib/dbcp/dbcp/commons-pool.jar"/>
+	<classpathentry kind="lib" path="F:/Project/WebProject/Spring&amp;Mybaits/WebRoot/WEB-INF/lib/jdbc/jdbc/spring-jdbc-3.2.8.RELEASE.jar"/>
+	<classpathentry kind="lib" path="F:/Project/WebProject/Spring&amp;Mybaits/WebRoot/WEB-INF/lib/jdbc/jdbc/spring-tx-3.2.8.RELEASE.jar"/>
+	<classpathentry kind="lib" path="F:/Project/WebProject/Spring&amp;Mybaits/WebRoot/WEB-INF/lib/mysql/mysql-connector-java-5.1.8-bin.jar"/>
+	<classpathentry kind="lib" path="F:/Project/WebProject/Spring&amp;Mybaits/WebRoot/WEB-INF/lib/spring/commons-logging.jar"/>
+	<classpathentry kind="lib" path="F:/Project/WebProject/Spring&amp;Mybaits/WebRoot/WEB-INF/lib/spring/hibernate-validator-4.2.0.Final.jar"/>
+	<classpathentry kind="lib" path="F:/Project/WebProject/Spring&amp;Mybaits/WebRoot/WEB-INF/lib/spring/jstl-1.2.jar"/>
+	<classpathentry kind="lib" path="F:/Project/WebProject/Spring&amp;Mybaits/WebRoot/WEB-INF/lib/spring/log4j-1.2.16.jar"/>
+	<classpathentry kind="lib" path="F:/Project/WebProject/Spring&amp;Mybaits/WebRoot/WEB-INF/lib/spring/mybatis-3.2.5.jar"/>
+	<classpathentry kind="lib" path="F:/Project/WebProject/Spring&amp;Mybaits/WebRoot/WEB-INF/lib/spring/mybatis-spring-1.2.2.jar"/>
+	<classpathentry kind="lib" path="F:/Project/WebProject/Spring&amp;Mybaits/WebRoot/WEB-INF/lib/spring/slf4j-api-1.6.1.jar"/>
+	<classpathentry kind="lib" path="F:/Project/WebProject/Spring&amp;Mybaits/WebRoot/WEB-INF/lib/spring/slf4j-log4j12-1.6.1.jar"/>
+	<classpathentry kind="lib" path="F:/Project/WebProject/Spring&amp;Mybaits/WebRoot/WEB-INF/lib/spring/spring-beans-3.2.8.RELEASE.jar"/>
+	<classpathentry kind="lib" path="F:/Project/WebProject/Spring&amp;Mybaits/WebRoot/WEB-INF/lib/spring/spring-context-3.2.8.RELEASE.jar"/>
+	<classpathentry kind="lib" path="F:/Project/WebProject/Spring&amp;Mybaits/WebRoot/WEB-INF/lib/spring/spring-core-3.2.8.RELEASE.jar"/>
+	<classpathentry kind="lib" path="F:/Project/WebProject/Spring&amp;Mybaits/WebRoot/WEB-INF/lib/spring/spring-expression-3.2.8.RELEASE.jar"/>
+	<classpathentry kind="lib" path="F:/Project/WebProject/Spring&amp;Mybaits/WebRoot/WEB-INF/lib/spring/spring-web-3.2.8.RELEASE.jar"/>
+	<classpathentry kind="lib" path="F:/Project/WebProject/Spring&amp;Mybaits/WebRoot/WEB-INF/lib/spring/spring-webmvc-3.2.8.RELEASE.jar"/>
+	<classpathentry kind="lib" path="F:/Project/WebProject/Spring&amp;Mybaits/WebRoot/WEB-INF/lib/spring/standard-1.1.2.jar"/>
+	<classpathentry kind="lib" path="F:/Project/WebProject/Spring&amp;Mybaits/WebRoot/WEB-INF/lib/spring/validation-api-1.0.0.GA.jar"/>
+	<classpathentry kind="lib" path="F:/Project/WebProject/Spring&amp;Mybaits/WebRoot/WEB-INF/lib/xml/dom4j-1.6.1.jar"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>

@@ -5,19 +5,29 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>达内－NetCTOSS</title>
-        <link type="text/css" rel="stylesheet" media="all" href="../styles/global.css" />
-        <link type="text/css" rel="stylesheet" media="all" href="../styles/global_color.css" /> 
+        <link type="text/css" rel="stylesheet" media="all" href="/NetCTOSS/styles/global.css" />
+        <link type="text/css" rel="stylesheet" media="all" href="/NetCTOSS/styles/global_color.css" /> 
+        <script type="text/javascript" src="/NetCTOSS/js/jquery-1.11.1.js"></script>
         <script language="javascript" type="text/javascript">
-            function deleteRole() {
+            function deleteRole(id) {
                 var r = window.confirm("确定要删除此角色吗？");
-                document.getElementById("operate_result_info").style.display = "block";
+                if(r){
+                	//window.location="/NetCTOSS/fee/"+id;
+                	$.ajax({
+                		url:"/NetCTOSS/role/"+id,
+                		type:"delete",
+                		success:function(ok){
+                			window.location="/NetCTOSS/role/list/1"
+                		}
+                	})
+                }
             }
         </script>
     </head>
     <body>
         <!--Logo区域开始-->
         <div id="header">
-            <img src="../images/logo.png" alt="logo" class="left"/>
+            <img src="/NetCTOSS/images/logo.png" alt="logo" class="left"/>
             <a href="#">[退出]</a>            
         </div>
         <!--Logo区域结束-->
@@ -42,7 +52,7 @@
             <form action="" method="">
                 <!--查询-->
                 <div class="search_add">
-                    <input type="button" value="增加" class="btn_add" onclick="location.href='role_add.html';" />
+                    <input type="button" value="增加" class="btn_add" onclick="location.href='/NetCTOSS/role/toAdd';" />
                 </div>  
                 <!--删除的操作提示-->
                 <div id="operate_result_info" class="operate_success">
@@ -64,21 +74,40 @@
 	                            <td>${role.name}</td>
 	                            <td>${role.modulesName}</td>
 	                            <td>
-	                                <input type="button" value="修改" class="btn_modify" onclick="location.href='role_modi.html';"/>
-	                                <input type="button" value="删除" class="btn_delete" onclick="deleteRole();" />
+	                                <input type="button" value="修改" class="btn_modify" onclick="location.href='../${role.role_id}/toEdit';"/>
+	                                <input type="button" value="删除" class="btn_delete" onclick="deleteRole(${role.role_id});" />
 	                            </td>
                         </c:forEach>                     
                     </table>
                 </div> 
                 <!--分页-->
                 <div id="pages">
-        	        <a href="#">上一页</a>
-                    <a href="#" class="current_page">1</a>
-                    <a href="#">2</a>
-                    <a href="#">3</a>
-                    <a href="#">4</a>
-                    <a href="#">5</a>
-                    <a href="#">下一页</a>
+                	<c:choose>
+                		<c:when test="${page.page>1}">
+		        	        <a href="${page.page-1}">上一页</a>
+                		</c:when>
+                		<c:otherwise>
+                			<a>上一页</a>
+                		</c:otherwise>
+                	</c:choose>
+					<c:forEach var="i" begin="1" end="${page.totalPage}">
+                		<c:choose>
+                			<c:when test="${i==page.page}">
+			                    <a href="${i}" class="current_page">${i}</a>
+                			</c:when>
+                			<c:otherwise>
+			                    <a href="${i}">${i}</a>
+                			</c:otherwise>
+                		</c:choose>
+                	</c:forEach>
+                    <c:choose>
+                		<c:when test="${page.page<page.totalPage}">
+		        	        <a href="${page.page+1}">下一页</a>
+                		</c:when>
+                		<c:otherwise>
+                			<a>下一页</a>
+                		</c:otherwise>
+                	</c:choose>
                 </div>
             </form>
         </div>

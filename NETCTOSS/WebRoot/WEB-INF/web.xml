@@ -11,8 +11,9 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>springmvc</servlet-name>
-    <url-pattern>*.from</url-pattern>
+    <url-pattern>/</url-pattern>
   </servlet-mapping>
+  <!-- PUT和POST有效 -->
   <filter>
     <filter-name>encodingFilter</filter-name>
     <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -24,5 +25,16 @@
   <filter-mapping>
     <filter-name>encodingFilter</filter-name>
     <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
+  <!-- 支持form:form标签的method=put和delete属性 -->
+  <filter>
+  	<filter-name>HiddenHttpMethodFilter</filter-name>
+  	<filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
+  </filter>
+  <filter-mapping>
+  	<filter-name>HiddenHttpMethodFilter</filter-name>
+  	<!-- 此处写DispatherServlet名字 -->
+  	<servlet-name>springmvc</servlet-name>
   </filter-mapping>
 </web-app>

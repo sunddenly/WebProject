@@ -49,4 +49,60 @@
 			<result property="loc" column="loc"/>
 		</association>
 	</resultMap>
+	<!-- 动态SQL -->
+	<select id="findByDeptNo" parameterType="com.hebut.entity.Emp" resultType="com.hebut.entity.Emp">
+		select * from EMP_
+		<if test="dept.deptno != null">
+			where deptno=#{dept.deptno}
+		</if>
+	</select>
+	<select id="findBySal" parameterType="com.hebut.entity.Emp" resultType="com.hebut.entity.Emp">
+		select * from emp_
+		<choose>
+			<when test="sal>2000">
+				where sal >= #{sal}
+			</when>
+			<otherwise>
+				where sal >= 2000
+			</otherwise>
+		</choose>
+	</select>
+	<select id="findBySalAndDeptno" parameterType="com.hebut.entity.Emp" resultType="com.hebut.entity.Emp">
+		select * from emp_
+		<where>
+			<if test="dept.deptno != null">
+				deptno=#{dept.deptno}
+			</if>
+			<choose>
+				<when test="sal>2000">
+					and sal >= #{sal}
+				</when>
+				<otherwise>
+					and sal >= 2000
+				</otherwise>
+			</choose>
+		</where>	
+	</select>
+	<update id="updateEmp" parameterType="com.hebut.entity.Emp">
+		update emp_
+		<set>
+			<if test="ename != null">
+				ename = #{ename},
+			</if>
+			<if test="sal != null">
+				sal = #{sal},
+			</if>
+		</set>
+		where empno=#{empno}
+	</update>
+	<select id="findByDeptNos" parameterType="com.hebut.entity.Emp" resultType="com.hebut.entity.Emp">
+		select * from EMP_
+		<if test="deptnos != null">
+			where deptno in
+			<foreach collection="deptnos" item="dno"
+				open="(" close=")" separator=",">
+				#{dno}
+			</foreach>
+		</if>
+	</select>
 </mapper>

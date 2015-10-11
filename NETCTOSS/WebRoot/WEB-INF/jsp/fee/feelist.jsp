@@ -6,8 +6,9 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>达内－NetCTOSS</title>
-        <link type="text/css" rel="stylesheet" media="all" href="../styles/global.css" />
-        <link type="text/css" rel="stylesheet" media="all" href="../styles/global_color.css" />
+        <link type="text/css" rel="stylesheet" media="all" href="/NetCTOSS/styles/global.css" />
+        <link type="text/css" rel="stylesheet" media="all" href="/NetCTOSS/styles/global_color.css" />
+        <script type="text/javascript" src="/NetCTOSS/js/jquery-1.11.1.js"></script>
         <script language="javascript" type="text/javascript">
             //排序按钮的点击事件
             function sort(btnObj) {
@@ -32,7 +33,14 @@
             function deleteFee(id) {
                 var r = window.confirm("确定要删除此资费吗？");
                 if(r){
-                	window.location="feedelete.from?id="+id;
+                	//window.location="/NetCTOSS/fee/"+id;
+                	$.ajax({
+                		url:"/NetCTOSS/fee/"+id,
+                		type:"delete",
+                		success:function(ok){
+                			window.location="/NetCTOSS/fee/list/1"
+                		}
+                	})
                 }
             }
         </script>        
@@ -40,7 +48,7 @@
     <body>
         <!--Logo区域开始-->
         <div id="header">
-            <img src="../images/logo.png" alt="logo" class="left"/>
+            <img src="/NetCTOSS/images/logo.png" alt="logo" class="left"/>
             <a href="#">[退出]</a>            
         </div>
         <!--Logo区域结束-->
@@ -70,7 +78,7 @@
                         <input type="button" value="基费" class="sort_asc" onclick="sort(this);" />
                         <input type="button" value="时长" class="sort_asc" onclick="sort(this);" />
                     </div>
-                    <input type="button" value="增加" class="btn_add" onclick="location.href='toAdd.from';" />
+                    <input type="button" value="增加" class="btn_add" onclick="location.href='/NetCTOSS/fee/toAdd';" />
                 </div> 
                 <!--启用操作的操作提示-->
                 <div id="operate_result_info" class="operate_success">
@@ -102,9 +110,9 @@
 	                            <td>${cost.startime}</td>
 	                            <td>${cost.status=="1"?"暂停":"开通" }</td>
 	                            <td><!-- 暂停状态才允许下面几个按钮操作 -->  
-	                            	<c:if test='${cost.status=="0"}'>
+	                            	<c:if test='${cost.status=="1"}'>
 		                                <input type="button" value="启用" class="btn_start" onclick="startFee(${cost.cost_id});" />
-		                                <input type="button" value="修改" class="btn_modify" onclick="location.href='toUpdate.from?id=${cost.cost_id}';" />
+		                                <input type="button" value="修改" class="btn_modify" onclick="location.href='../${cost.cost_id}/toEdit';" />
 		                                <input type="button" value="删除" class="btn_delete" onclick="deleteFee(${cost.cost_id});" />
 	                            	</c:if>                              
 	                            </td>
@@ -122,7 +130,7 @@
                 <div id="pages">
                 	<c:choose>
                 		<c:when test="${page.page>1}">
-		        	        <a href="feelist.from?page=${page.page-1}">上一页</a>
+		        	        <a href="${page.page-1}">上一页</a>
                 		</c:when>
                 		<c:otherwise>
                 			<a>上一页</a>
@@ -131,16 +139,16 @@
                 	<c:forEach var="i" begin="1" end="${page.totalPage}">
                 		<c:choose>
                 			<c:when test="${i==page.page}">
-			                    <a href="feelist.from?page=${i}" class="current_page">${i}</a>
+			                    <a href="${i}" class="current_page">${i}</a>
                 			</c:when>
                 			<c:otherwise>
-			                    <a href="feelist.from?page=${i}">${i}</a>
+			                    <a href="${i}">${i}</a>
                 			</c:otherwise>
                 		</c:choose>
                 	</c:forEach>
                 	<c:choose>
                 		<c:when test="${page.page<page.totalPage}">
-		        	        <a href="feelist.from?page=${page.page+1}">下一页</a>
+		        	        <a href="${page.page+1}">下一页</a>
                 		</c:when>
                 		<c:otherwise>
                 			<a>下一页</a>

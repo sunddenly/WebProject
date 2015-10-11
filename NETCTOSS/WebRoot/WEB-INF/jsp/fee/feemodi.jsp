@@ -7,8 +7,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>达内－NetCTOSS</title>
-        <link type="text/css" rel="stylesheet" media="all" href="../styles/global.css" />
-        <link type="text/css" rel="stylesheet" media="all" href="../styles/global_color.css" />
+        <link type="text/css" rel="stylesheet" media="all" href="/NetCTOSS/styles/global.css" />
+        <link type="text/css" rel="stylesheet" media="all" href="/NetCTOSS/styles/global_color.css" />
         <script language="javascript" type="text/javascript">
             //保存结果的提示
             function showResult() {
@@ -60,7 +60,7 @@
     <body>
         <!--Logo区域开始-->
         <div id="header">
-            <img src="../images/logo.png" alt="logo" class="left"/>
+            <img src="/NetCTOSS/images/logo.png" alt="logo" class="left"/>
             <a href="#">[退出]</a>            
         </div>
         <!--Logo区域结束-->
@@ -84,7 +84,7 @@
         <div id="main">            
             <div id="save_result_info" class="save_success">保存成功！</div>
             <!-- commandName指定表单显示Model中的数据 -->
-            <form:form action="feeupdate.from" method="post" commandName="cost" cssClass="main_form">
+            <form:form action="/NetCTOSS/fee/${cost.cost_id}" method="put" commandName="cost" cssClass="main_form">
                 <div class="text_info clearfix"><span>资费ID：</span></div>
                 <div class="input_info">
                 	<form:input path="cost_id" cssClass="readonly" readonly="true"/>

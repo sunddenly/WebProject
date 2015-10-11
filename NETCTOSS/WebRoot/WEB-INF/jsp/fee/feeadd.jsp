@@ -4,10 +4,10 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>达内－NetCTOSS</title>
-        <link type="text/css" rel="stylesheet" media="all" href="../styles/global.css" />
-        <link type="text/css" rel="stylesheet" media="all" href="../styles/global_color.css" />
+        <link type="text/css" rel="stylesheet" media="all" href="/NetCTOSS/styles/global.css" />
+        <link type="text/css" rel="stylesheet" media="all" href="/NetCTOSS/styles/global_color.css" />
         
-       	<script type="text/javascript" src="../js/jquery-1.11.1.js"></script>
+       	<script type="text/javascript" src="/NetCTOSS/js/jquery-1.11.1.js"></script>
        	
         <script language="javascript" type="text/javascript">
             //保存结果的提示
@@ -70,10 +70,9 @@
             	//检查资费名是否重复
             	//ajax(/fee/checkName.from)----->CheckNameController----->costMapperDao---->json(返回布尔值)
             	$.ajax({
-            		type:"post",
+            		type:"get",
             		async:false,
-            		url:"checkName.from",
-            		data: {"name":v_name},
+            		url:"check/"+v_name,
             		success:function(ok){
             			if(ok){
 	            			$("#name_error").html("资费名可用");
@@ -129,6 +128,7 @@
             
             function doSubmit(){
             	name_flag = checkName();
+            	alert(name_flag);
 				baseDuration_flag = checkBaseDuration();
 				var from_flag = name_flag&&baseDuration_flag;
 				return from_flag;
@@ -138,7 +138,7 @@
     <body>
         <!--Logo区域开始-->
         <div id="header">
-            <img src="../images/logo.png" alt="logo" class="left"/>
+            <img src="/NetCTOSS/images/logo.png" alt="logo" class="left"/>
             <a href="#">[退出]</a>            
         </div>
         <!--Logo区域结束-->
@@ -162,7 +162,7 @@
         <div id="main">            
             <div id="save_result_info" class="save_fail">保存失败，资费名称重复！</div>
             <!-- feeadd.from -->
-            <form action="feeadd.from" method="post" class="main_form" onsubmit="return doSubmit()">
+            <form action="/NetCTOSS/fee/add" method="post" class="main_form" onsubmit="return doSubmit()">
                 <div class="text_info clearfix">
                 <span>资费名称：</span></div>
                 <div class="input_info">

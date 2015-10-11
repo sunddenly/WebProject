@@ -19,13 +19,28 @@ public class TestRoleDao {
 		String conf = "com/netctoss/config/applicationContext.xml";
 		ApplicationContext ac = new ClassPathXmlApplicationContext(conf);
 		RoleMapperDao dao = ac.getBean("roleMapperDao",RoleMapperDao.class);
-		List<Role> list = dao.findPage();
+
+		testAddRole(dao);
+		testListRole(dao);
+	}
+	private static void testListRole(RoleMapperDao dao) {
+		Page page = new Page(1,5);
+		List<Role> list = dao.findPage(page);
 		for (Role role : list) {
 			System.out.println(role.getRole_id()+" "+role.getName()+role.getModulesName());
-//			System.out.println("权限：");
-//			for (RoleModule m : role.getModules()) {
-//				System.out.println(m.getRole_id()+" "+m.getModule_id());
-//			}
+			System.out.println("权限：");
+			for (RoleModule m : role.getModules()) {
+				System.out.println(m.getRole_id()+" "+m.getModule_id());
+			}
 		}
+	}
+	public static void testAddRole(RoleMapperDao dao){
+		Role role = new Role();
+		role.setName("ggg");
+		dao.addRole(role);
+		RoleModule roleModule = new RoleModule();
+		roleModule.setRole_id(role.getRole_id());
+		roleModule.setModule_id(4);
+		dao.addRoleModule(roleModule);
 	}
 }

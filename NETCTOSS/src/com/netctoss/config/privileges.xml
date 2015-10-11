@@ -79,4 +79,10 @@
 			<url>/findReport.action</url>
 		</urls>
 	</privilege>
+	<privilege id="8">
+		<name>部门实习</name>
+		<urls>
+			<url>/findReport.action</url>
+		</urls>
+	</privilege>
 </privileges>

@@ -14,8 +14,17 @@ public class Emp implements Serializable{
 	private Double comm;
 	private Integer deptno;
 	//追加一个部门的关联属性
-	private Dept dept;
-	
+	private Dept dept = new Dept();
+	//追加一个属性，存储多个部门编号
+	private Integer[] deptnos;
+	public Integer[] getDeptnos() {
+		return deptnos;
+	}
+
+	public void setDeptnos(Integer[] deptnos) {
+		this.deptnos = deptnos;
+	}
+
 	public Dept getDept() {
 		return dept;
 	}
