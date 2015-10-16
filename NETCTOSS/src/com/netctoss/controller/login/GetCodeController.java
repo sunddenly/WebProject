@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/login")
 public class GetCodeController {
-	@RequestMapping("/getCode")
+	@RequestMapping("/getCode/{time}")
 	public void execute(HttpServletResponse response,HttpSession sessioin) throws IOException{
 		BufferedImage image = new BufferedImage(100, 30, BufferedImage.TYPE_INT_RGB);//颜色由三个整数组成
 		

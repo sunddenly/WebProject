@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.netctoss.dao.ServiceMapperDao">
+    <select id="findByCondition" 
+    	parameterType="com.netctoss.entity.vo.ServicePage"
+    	resultType="com.netctoss.entity.vo.ServiceLine">
+    	SELECT s.service_id,
+    		   s.account_id,
+    		   a.idcard_no,
+    		   a.real_name,
+    		   s.os_username,
+    		   s.status,
+    		   s.unix_host,
+    		   c.name cost_name,
+    		   c.descr cost_descr
+		FROM service s 
+		JOIN account a ON(s.account_id=a.account_id)
+		JOIN cost c ON(s.cost_id=c.cost_id)
+		<where>
+			<if test='!"*".equals(os_username)'>
+				s.os_username=#{os_username}
+			</if>
+			<if test='!"*".equals(unix_host)'>
+				s.unix_host=#{unix_host}
+			</if>
+			<if test='!"*".equals(idcard_no)'>
+				a.idcard_no=#{idcard_no}
+			</if>
+			<if test='!"-1".equals(status)'>
+				s.status=#{status}
+			</if>
+		</where>
+    </select>
+</mapper>
