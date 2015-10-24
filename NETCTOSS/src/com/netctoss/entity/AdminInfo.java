@@ -1,6 +1,7 @@
 package com.netctoss.entity;
 
 import java.sql.Date;
+import java.util.List;
 
 public class AdminInfo {
 	private Integer admin_id;
@@ -10,8 +11,28 @@ public class AdminInfo {
 	private String telephone;
 	private String email;
 	private Date enrolldate;
+	//追加属性，用于存取角色
+	private List<Role> roles;
+	
 	//扩展属性：接收提交的验证码信息
 	private String code;
+	public String getRoleNames(){
+		String names="";
+		for(int i=0;i<roles.size();i++){
+			Role r = roles.get(i);
+			names += r.getName();
+			if(i<roles.size()-1){
+				names += "、";
+			}
+		}
+		return names;
+	}
+	public List<Role> getRoles() {
+		return roles;
+	}
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
+	}
 	
 	public String getCode() {
 		return code;

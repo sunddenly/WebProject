@@ -7,4 +7,37 @@
 		resultType="com.netctoss.entity.AdminInfo">
 		select * from admin_info where admin_code=#{admin_code} and password=#{password}
 	</select>
+	<select id="findByCondition" 
+		parameterType="com.netctoss.entity.vo.AdminInfoPage"
+		resultMap="adminMap">
+		SELECT a.admin_id,
+			   a.name,
+        	   a.admin_code,
+               a.telephone,
+               a.email,
+               a.enrolldate,
+               r.name roleName
+		FROM  role_info r,admin_info a,admin_role ar,role_module rm
+		WHERE ar.admin_id=a.admin_id
+		AND r.role_id=ar.role_id
+		AND r.role_id=rm.role_id
+		<if test='!moduleId.equals(-1)'>
+		    AND rm.module_id=#{moduleId}
+		</if>
+		<if test='!"*".equals(roleName)'>
+		    AND r.name=#{roleName}
+		</if>
+	</select>
+	<resultMap type="com.netctoss.entity.AdminInfo" id="adminMap">
+		<id property="admin_id" column="admin_id" />
+		<result property="admin_code" column="admin_code" />
+		<result property="name" column="name"/>
+		<result property="telephone" column="telephone"/>
+		<result property="email" column="email"/>
+		<result property="enrolldate" column="enrolldate"/>
+		<collection property="roles" 
+			ofType="com.netctoss.entity.Role">
+			<result property="name" column="roleName"/>
+		</collection>
+	</resultMap>
 </mapper>
