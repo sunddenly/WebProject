@@ -9,6 +9,7 @@ import com.netctoss.util.MyBatisDao;
 @MyBatisDao
 public interface RoleMapperDao {
 	public List<Role> findAll();
+	public List<Role> findRoleAll();
 	public List<Role> findPage(Page page);
 	public int findRows();
 	public void addRole(Role role);

@@ -1,5 +1,6 @@
 ﻿<%@ page language="java" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>   
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
@@ -28,6 +29,35 @@
                 var r = window.confirm("确定要开通此业务账号吗？");
                 document.getElementById("operate_result_info").style.display = "block";
             }
+            function doSearch(page){
+            	var osUsername = $("#osUsername").val();
+            	var unixHost = $("#unixHost").val();
+            	var idcardNo = $("#idcardNo").val();
+            	var status = $("#status").val();
+            	//根据条件变量状态生成一个rest风格的查询的url
+            	var url = "/NetCTOSS/service/list";
+            	if(osUsername == ""){
+            		url += "/*";
+            	}else{
+            		url += "/"+osUsername;
+            	}
+            	
+            	if(unixHost==""){
+            		url += "/*";
+            	}else{
+            		url += "/"+unixHost;
+            	}
+            	
+            	if(idcardNo==""){
+            		url += "/*";
+            	}else{
+            		url += "/"+idcardNo;
+            	}
+            	
+            	url += "/"+status;
+            	url += "/"+page;
+            	window.location = url;//用js以get方式发送请求
+            }
         </script>
     </head>
     <body>
@@ -55,26 +85,32 @@
         <!--导航区域结束-->
         <!--主要区域开始-->
         <div id="main">
-            <form action="" method="">
+            <form:form commandName="page">
                 <!--查询-->
                 <div class="search_add">                        
-                    <div>OS 账号：<input type="text" value="" class="width100 text_search" /></div>                            
-                    <div>服务器 IP：<input type="text" value="" class="width100 text_search" /></div>
-                    <div>身份证：<input type="text"  value="" class="text_search" /></div>
-                    <div>状态：
-                        <select class="select_search">
-                            <option>全部</option>
-                            <option>开通</option>
-                            <option>暂停</option>
-                            <option>删除</option>
-                        </select>
+                    <div>OS 账号：
+                    	<form:input path="os_username" id="osUsername" cssClass="width100 text_search"/>
+                    </div>                            
+                    <div>服务器 IP：
+                    	<form:input path="unix_host" id="unixHost" cssClass="width100 text_search" />
                     </div>
-                    <div><input type="button" value="搜索" class="btn_search" /></div>
-                    <input type="button" value="增加" class="btn_add" onclick="location.href='service_add.html';" />
+                    <div>身份证：
+                    	<form:input path="idcard_no" id="idcardNo" cssClass="text_search" />
+                    </div>
+                    <div>状态：
+                        <form:select path="status" id="status">
+                        	<form:option value="-1">全部</form:option>
+                        	<form:option value="0">开通</form:option>
+                        	<form:option value="1">暂停</form:option>
+                        	<form:option value="2">删除</form:option>
+                        </form:select>
+                    </div>
+                    <div><input type="button" value="搜索" class="btn_search" onclick="doSearch(1)"/></div>
+                    <input type="button" value="增加" class="btn_add" onclick="location.href='/NetCTOSS/service/toAdd';" />
                 </div>  
                 <!--删除的操作提示-->
                 <div id="operate_result_info" class="operate_success">
-                    <img src="../images/close.png" onclick="this.parentNode.style.display='none';" />
+                    <img src="/NetCTOSS/images/close.png" onclick="this.parentNode.style.display='none';" />
                     删除成功！
                 </div>   
                 <!--数据区域：用表格展示数据-->     
@@ -93,7 +129,7 @@
                     </tr>
                     <c:forEach items="${services}" var="s">
 	                    <tr>
-	                        <td><a href="service_detail.html" title="查看明细">${s.service_id}</a></td>
+	                        <td><a href="/NetCTOSS/service/${s.service_id}" title="查看明细">${s.service_id}</a></td>
 	                        <td>${s.account_id}</td>
 	                        <td>${s.idcard_no}</td>
 	                        <td>${s.real_name}</td>
@@ -123,19 +159,40 @@
                 5、业务账号不设计修改密码功能，由用户自服务功能实现；<br />
                 6、暂停和删除状态的账务账号下属的业务账号不能被开通。</p>
                 </div>                    
-                <!--分页-->
+                <!--分页--> 
                 <div id="pages">
-                    <a href="#">首页</a>
-        	        <a href="#">上一页</a>
-                    <a href="#" class="current_page">1</a>
-                    <a href="#">2</a>
-                    <a href="#">3</a>
-                    <a href="#">4</a>
-                    <a href="#">5</a>
-                    <a href="#">下一页</a>
-                    <a href="#">末页</a>
-                </div>                    
-            </form>
+                    <a href="javascript:doSearch(1);">首页</a>
+                    <c:choose>
+                		<c:when test="${page.page>1}">
+		        	        <a href="javascript:doSearch(${page.page-1});">上一页</a>
+                		</c:when>
+                		<c:otherwise>
+                			<a>上一页</a>
+                		</c:otherwise>
+                	</c:choose>
+                	
+                	<c:forEach var="i" begin="1" end="${page.totalPage}">
+                		<c:choose>
+                			<c:when test="${i==page.page}">
+			                    <a href="javascript:doSearch(${i});" class="current_page">${i}</a>
+                			</c:when>
+                			<c:otherwise>
+			                    <a href="javascript:doSearch(${i});">${i}</a>
+                			</c:otherwise>
+                		</c:choose>
+                	</c:forEach>
+                	
+                	<c:choose>
+                		<c:when test="${page.page<page.totalPage}">
+		        	         <a href="javascript:doSearch(${page.page+1});">下一页</a>
+                		</c:when>
+                		<c:otherwise>
+                			<a>下一页</a>
+                		</c:otherwise>
+                	</c:choose>
+                    <a href="javascript:doSearch(${page.totalPage});">末页</a> 
+                 </div>                 
+            </form:form>
         </div>
         <!--主要区域结束-->
         <div id="footer">

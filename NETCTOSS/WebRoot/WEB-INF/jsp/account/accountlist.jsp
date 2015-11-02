@@ -12,9 +12,32 @@
         <script type="text/javascript" src="/NetCTOSS/js/jquery-1.11.1.js"></script>
         <script language="javascript" type="text/javascript">
             //删除
-            function deleteAccount() {
+            function deleteAccount(id) {
                 var r = window.confirm("确定要删除此账务账号吗？\r\n删除后将不能恢复，且会删除其下属的所有业务账号。");
-                document.getElementById("operate_result_info").style.display = "block";
+                if(r){
+                	$.ajax({
+                		url:"/NetCTOSS/account/"+id,
+                		type:"delete",
+                		success:function(ok){
+                			var result = $("#operate_result_info span");
+                			var parent = $("#operate_result_info");
+                			if(ok){
+                				result.html("删除成功，且已经删除下属的业务账号！");
+                				parent.attr("class","operate_success");
+                				parent.css("display","block");
+                			}else{
+                				parent.attr("class","operate_fail");
+                				result.html("删除失败！数据并发错误。");
+                				parent.css("display","block");
+                			}
+                		}
+                	});
+                }
+            }
+            //刷新页面
+            function refresh(){
+            	$("#operate_result_info").css("display","none");
+            	window.location="/NetCTOSS/account/list/*/*/*/-1/1";
             }
             //开通或暂停
             function setState() {
@@ -50,6 +73,52 @@
             	url += "/"+status;
             	url += "/"+page;
             	window.location = url;//用js以get方式发送请求
+            }
+            //暂停账号
+            function pauseAccount(id){
+            	var r = window.confirm("确定要暂停此账务账号吗？此操作将暂停该账号下所有的业务账号。");
+            	if(r){
+	            	$.ajax({
+	                		url:"/NetCTOSS/account/pause/"+id,
+	                		type:"put",
+	                		success:function(ok){
+	                			var result = $("#operate_result_info span");
+	                			var parent = $("#operate_result_info");
+	                			if(ok){
+	                				result.html("暂停成功，且已经暂停下属的业务账号！");
+	                				parent.attr("class","operate_success");
+	                				parent.css("display","block");
+	                			}else{
+	                				parent.attr("class","operate_fail");
+	                				result.html("暂停失败！数据并发错误。");
+	                				parent.css("display","block");
+	                			}
+	                		}
+	                }); 
+            	}
+            }
+            //开通账号
+            function startAccount(id){
+            	var r = window.confirm("确定要开通此账务账号吗？");
+            	if(r){
+	            	$.ajax({
+	                		url:"/NetCTOSS/account/start/"+id,
+	                		type:"put",
+	                		success:function(ok){
+	                			var result = $("#operate_result_info span");
+	                			var parent = $("#operate_result_info");
+	                			if(ok){
+	                				result.html("启用成功，其下属的业务账号仍为暂停状态！");
+	                				parent.attr("class","operate_success");
+	                				parent.css("display","block");
+	                			}else{
+	                				parent.attr("class","operate_fail");
+	                				result.html("暂停失败！数据并发错误。");
+	                				parent.css("display","block");
+	                			}
+	                		}
+	                }); 
+            	}
             }
         </script>
     </head>
@@ -96,12 +165,12 @@
                         </form:select>
                     </div>
                     <div><input type="button" value="搜索" class="btn_search" onclick="doSearch(1)"/></div>
-                    <input type="button" value="增加" class="btn_add" onclick="location.href='account_add.html';" />
+                    <input type="button" value="增加" class="btn_add" onclick="location.href='/NetCTOSS/account/toAdd';" />
                 </div>  
                 <!--删除等的操作提示-->
                 <div id="operate_result_info" class="operate_success">
-                    <img src="../images/close.png" onclick="this.parentNode.style.display='none';" />
-                    删除成功，且已删除其下属的业务账号！
+                    <img src="/NetCTOSS/images/close.png" onclick="refresh()" />
+                    <span></span>
                 </div>   
                 <!--数据区域：用表格展示数据-->     
                 <div id="data">            
@@ -119,18 +188,33 @@
                     <c:forEach items="${accounts}" var="account">
 	                    <tr>
 	                        <td>${account.account_id}</td>
-	                        <td><a href="account_detail.html">${account.real_name}</a></td>
+	                        <td><a href="/NetCTOSS/account/${account.account_id}">${account.real_name}</a></td>
 	                        <td>${account.idcard_no}</td>
 	                        <td>${account.login_name}</td>
-	                        <td>${account.status=="1"?"暂停":"开通" }</td>
-	                        <td>${account.create_date}</td>
+	                        <td>
+	                        	<c:choose>
+	                        		<c:when test="${account.status=='0'}">开通</c:when>
+	                        		<c:when test="${account.status=='1'}">暂停</c:when>
+	                        		<c:otherwise>删除</c:otherwise>
+	                        	</c:choose>
+	                        </td>
+	                        <td>${account.createDate}</td>
 	                        <td>${account.last_login_time}</td>  
-		                    <td class="td_modi">
-		                        <c:if test="${account.status==0}">
-			                            <input type="button" value="暂停" class="btn_pause" onclick="setState();" />
-			                            <input type="button" value="修改" class="btn_modify" onclick="location.href='account_modi.html';" />
-			                            <input type="button" value="删除" class="btn_delete" onclick="deleteAccount();" />                     
-		                        </c:if>  
+		                    <td class="td_modi"> 
+		                        <c:choose>
+		                        	<c:when test="${account.status=='0'}">
+		                        		<input type="button" value="暂停" class="btn_pause" onclick="pauseAccount(${account.account_id})" />
+			                            <input type="button" value="修改" class="btn_modify" onclick="location.href='/NetCTOSS/account/${account.account_id}/toEdit';" />
+			                            <input type="button" value="删除" class="btn_delete" onclick="deleteAccount(${account.account_id});" />                     
+		                        	</c:when>
+		                        	<c:when test="${account.status=='1'}">
+		                        		<input type="button" value="开通" class="btn_pause" onclick="startAccount(${account.account_id})" />
+			                            <input type="button" value="修改" class="btn_modify" onclick="location.href='/NetCTOSS/account/${account.account_id}/toEdit';" />
+			                            <input type="button" value="删除" class="btn_delete" onclick="deleteAccount(${account.account_id});" />                     
+		                        	</c:when>
+		                        	<c:otherwise>
+		                        	</c:otherwise>
+		                        </c:choose>
 		                    </td>
 	                    </tr>                  
                     </c:forEach>

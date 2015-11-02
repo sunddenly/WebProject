@@ -13,9 +13,18 @@ public class AdminInfo {
 	private Date enrolldate;
 	//追加属性，用于存取角色
 	private List<Role> roles;
-	
+	//追加属性，用于存储角色role_id
+	private List<Integer> roleIds;
 	//扩展属性：接收提交的验证码信息
 	private String code;
+	
+	
+	public List<Integer> getRoleIds() {
+		return roleIds;
+	}
+	public void setRoleIds(List<Integer> roleIds) {
+		this.roleIds = roleIds;
+	}
 	public String getRoleNames(){
 		String names="";
 		for(int i=0;i<roles.size();i++){

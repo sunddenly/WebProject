@@ -20,8 +20,9 @@ public class TestRoleDao {
 		ApplicationContext ac = new ClassPathXmlApplicationContext(conf);
 		RoleMapperDao dao = ac.getBean("roleMapperDao",RoleMapperDao.class);
 
-		testAddRole(dao);
-		testListRole(dao);
+		//testAddRole(dao);
+		//testListRole(dao);
+		testfindRole(dao);
 	}
 	private static void testListRole(RoleMapperDao dao) {
 		Page page = new Page(1,5);
@@ -32,6 +33,12 @@ public class TestRoleDao {
 			for (RoleModule m : role.getModules()) {
 				System.out.println(m.getRole_id()+" "+m.getModule_id());
 			}
+		}
+	}
+	private static void testfindRole(RoleMapperDao dao) {
+		List<Role> list = dao.findRoleAll();
+		for (Role role : list) {
+			System.out.println(role.getRole_id()+" "+role.getName());
 		}
 	}
 	public static void testAddRole(RoleMapperDao dao){

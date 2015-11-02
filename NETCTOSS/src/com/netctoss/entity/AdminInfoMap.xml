@@ -7,8 +7,16 @@
 		resultType="com.netctoss.entity.AdminInfo">
 		select * from admin_info where admin_code=#{admin_code} and password=#{password}
 	</select>
-	<select id="findByCondition" 
-		parameterType="com.netctoss.entity.vo.AdminInfoPage"
+	
+	<insert id="addAdmin" parameterType="com.netctoss.entity.AdminInfo" keyProperty="admin_id" useGeneratedKeys="true">
+		INSERT INTO admin_info
+		VALUES(null,#{admin_code},#{password},#{name},#{telephone},#{email},default);
+	</insert>
+		<insert id="addAdminRole" parameterType="com.netctoss.entity.AdminRole">
+		INSERT INTO admin_role
+		VALUES(#{admin_id},#{role_id});
+	</insert>
+	<select id="findByName" parameterType="java.lang.String" 
 		resultMap="adminMap">
 		SELECT a.admin_id,
 			   a.name,
@@ -21,12 +29,29 @@
 		WHERE ar.admin_id=a.admin_id
 		AND r.role_id=ar.role_id
 		AND r.role_id=rm.role_id
-		<if test='!moduleId.equals(-1)'>
-		    AND rm.module_id=#{moduleId}
-		</if>
-		<if test='!"*".equals(roleName)'>
-		    AND r.name=#{roleName}
-		</if>
+		AND a.name=#{name}
+	</select>
+	<select id="findByCondition" 
+		parameterType="com.netctoss.entity.vo.AdminInfoPage"
+		resultMap="adminMap">
+		SELECT a.admin_id,a.admin_code,a.name,a.telephone,a.email,a.enrolldate,r.name roleName
+		FROM(
+			SELECT admin_id,name,admin_code,telephone,email,enrolldate
+			FROM admin_info
+			ORDER BY admin_id
+			LIMIT #{begin},#{pageSize}
+		)a 
+		LEFT OUTER JOIN admin_role ar ON (a.admin_id=ar.admin_id)
+		LEFT OUTER JOIN role_info r ON (ar.role_id=r.role_id)
+		LEFT OUTER JOIN role_module rm ON (r.role_id=rm.role_id)
+		<where>
+			<if test='!moduleId.equals(-1)'>
+			    AND rm.module_id=#{moduleId}
+			</if>
+			<if test='!"*".equals(roleName)'>
+			    AND r.name=#{roleName}
+			</if>
+		</where>
 	</select>
 	<resultMap type="com.netctoss.entity.AdminInfo" id="adminMap">
 		<id property="admin_id" column="admin_id" />
@@ -39,5 +64,61 @@
 			ofType="com.netctoss.entity.Role">
 			<result property="name" column="roleName"/>
 		</collection>
+		<!-- 将从数据库中查询的记录转换为对象，其中记录中的roleName列以集合的方式存储到AdminInfo的roles中 -->
 	</resultMap>
+	<select id="findRows" 
+		resultType="int"
+		parameterType="com.netctoss.entity.vo.AdminInfoPage">
+		SELECT COUNT(DISTINCT admin_code)
+		FROM admin_info a 
+		LEFT OUTER JOIN admin_role ar ON (a.admin_id=ar.admin_id)
+		LEFT OUTER JOIN role_info r ON (ar.role_id=r.role_id)
+		LEFT OUTER JOIN role_module rm ON (r.role_id=rm.role_id)
+		<where>
+			<if test='!moduleId.equals(-1)'>
+			    AND rm.module_id=#{moduleId}
+			</if>
+			<if test='!"*".equals(roleName)'>
+			    AND r.name=#{roleName}
+			</if>
+		</where>
+	</select>
+	<update id="resetPwd" >
+		UPDATE admin_info
+		SET password=admin_code
+		WHERE admin_id IN
+		<foreach collection="list" item="id" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</update>
+	<!-- 删除admin_role信息 -->
+	<delete id="deleteAdminRoleById" parameterType="int">
+		delete from admin_role 
+		where admin_id=#{admin_id}
+	</delete>
+	<!-- 删除role_info信息 -->
+	<delete id="deleteAdminById" parameterType="int">
+		delete from admin_info 
+		where admin_id=#{admin_id}
+	</delete>
+	<select id="findRoleId" parameterType="int" resultType="int">
+		select role_id
+		from admin_role
+		where admin_id=#{admin_id}
+	</select>
+	<select id="findById" parameterType="int" 
+		resultType="com.netctoss.entity.AdminInfo">
+		SELECT admin_id,
+			   name,
+        	   admin_code,
+               telephone,
+               email
+        FROM admin_info       
+        WHERE admin_id=#{admin_id}
+	</select>
+	<update id="updateAdminInfo" parameterType="com.netctoss.entity.AdminInfo">
+	    update admin_info
+	    set name=#{name},telephone=#{telephone},email=#{email}
+	    where admin_id=#{admin_id}
+	</update>
 </mapper>

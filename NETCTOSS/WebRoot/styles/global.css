@@ -1,5 +1,5 @@
 
-/* 全局样式 */
+/* 鍏ㄥ眬鏍峰紡 */
 body, p, div, ul, ol, li, dl, dd, dt, h1, h2, h3, h4, h5, h6, form, input, select, label, table, tr, td, th, thead, tbody, tfoot
 {
     margin: 0px auto;
@@ -101,13 +101,13 @@ textarea
     display: block;
 }
 
-/*清除浮动*/
+/*娓呴櫎娴姩*/
 .clearfix
 {
     clear: both;
 }
 
-/*浮动对象*/
+/*娴姩瀵硅薄*/
 .left
 {
     float: left;
@@ -118,14 +118,14 @@ textarea
     float: right;
     display: inline;
 }
-/*布局*/
+/*甯冨眬*/
 #header, #menu, #footer
 {
     width: 960px;
     margin: 0px auto;
 }
 
-/*页头部分：header*/
+/*椤靛ご閮ㄥ垎锛歨eader*/
 #header
 {
     text-align: right;
@@ -138,7 +138,7 @@ textarea
     font-weight: bold;
 }
 
-/*导航部分：navi*/
+/*瀵艰埅閮ㄥ垎锛歯avi*/
 #navi
 {
     width: 100%;
@@ -164,7 +164,7 @@ textarea
     float: left;
 }
 
-/*正文区域：main*/
+/*姝ｆ枃鍖哄煙锛歮ain*/
 #main
 {
     min-height: 410px;
@@ -183,7 +183,7 @@ form.main_form
 }
 
 
-/*正文：查询条件部分*/
+/*姝ｆ枃锛氭煡璇㈡潯浠堕儴鍒�/
 div.search_add
 {
     width: 910px;
@@ -202,7 +202,7 @@ div.search_add span
     margin-left: 5px;
 }
 
-/*正文：数据表格部分*/
+/*姝ｆ枃锛氭暟鎹〃鏍奸儴鍒�/
 #data
 {
     min-height: 330px;
@@ -255,7 +255,7 @@ th.th_select_all
     border-width: 0px;
 }
 
-/* 表格中的显示详细 */
+/* 琛ㄦ牸涓殑鏄剧ず璇︾粏 */
 a.summary
 {
     cursor: default;
@@ -277,7 +277,7 @@ div.detail_info
     text-align: left;
 }
 
-/* 正文：表单部分（div实现方式） */
+/* 姝ｆ枃锛氳〃鍗曢儴鍒嗭紙div瀹炵幇鏂瑰紡锛�*/
 div.text_info
 {
     width: 200px;
@@ -432,7 +432,7 @@ span.required
     font-size:10pt;
 }
 
-/* 保存操作后的提示消息 */
+/* 淇濆瓨鎿嶄綔鍚庣殑鎻愮ず娑堟伅 */
 #save_result_info
 {
     width: 600px;
@@ -441,9 +441,10 @@ span.required
     font-size: 14px;
     display: none;
     font-weight:bold;
+    position:fixed;
 }
 
-/* 删除操作后的提示消息 */
+/* 鍒犻櫎鎿嶄綔鍚庣殑鎻愮ず娑堟伅 */
 #operate_result_info
 {
     width: 400px;
@@ -464,7 +465,7 @@ span.required
     cursor: pointer;
 }
 
-/* 正文：分页功能区 */
+/* 姝ｆ枃锛氬垎椤靛姛鑳藉尯 */
 #pages
 {
     width: 940px;
@@ -482,7 +483,7 @@ span.required
     padding: 5px 9px;
 }
 
-/*页脚部分：footer*/
+/*椤佃剼閮ㄥ垎锛歠ooter*/
 #footer
 {
     width: 960px;
@@ -492,7 +493,7 @@ span.required
     text-align: center;
 }
 
-/* 表单上的元素：控件 */
+/* 琛ㄥ崟涓婄殑鍏冪礌锛氭帶浠�*/
 span.readonly
 {
     line-height: 28px;
@@ -547,7 +548,7 @@ input.btn_save
     height: 36px;
     line-height: 26px;
     font-size: 20px;
-    font-family: "黑体";
+    font-family: "榛戜綋";
     text-align: center;
     margin-right: 5px;
 }
@@ -556,12 +557,12 @@ input.sort_asc, input.sort_desc
     width: 71px;
     height: 26px;
     line-height: 26px;
-    font-family: "黑体";
+    font-family: "榛戜綋";
     text-align: center;
     padding-right: 10px;
 }
 
-/* 主页 */
+/* 涓婚〉 */
 #index_navi
 {
     width: 100%;
@@ -584,7 +585,7 @@ input.sort_asc, input.sort_desc
     float: left;
 }
 
-/* 登录页面 */
+/* 鐧诲綍椤甸潰 */
 div.login_box
 {
     width: 450px;
@@ -623,7 +624,7 @@ td.login_button img
     border-width: 0px;
 }
 
-/* 错误页面 */
+/* 閿欒椤甸潰 */
 #error
 {
     width: 960px;
@@ -635,7 +636,7 @@ td.login_button img
     text-decoration: underline;
     cursor: pointer;
 }
-/* 报表页面 */
+/* 鎶ヨ〃椤甸潰 */
 #report_main
 {  
     min-height: 420px;

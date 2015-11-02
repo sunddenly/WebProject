@@ -2,7 +2,9 @@ package com.netctoss.entity.vo;
 
 import java.sql.Date;
 
-public class ServicePage {
+import com.netctoss.entity.Page;
+
+public class ServicePage extends Page{
 	private String os_username;
 	private String unix_host;
 	private String idcard_no;

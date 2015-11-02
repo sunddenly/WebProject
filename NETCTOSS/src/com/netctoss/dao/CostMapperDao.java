@@ -1,6 +1,7 @@
 package com.netctoss.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.netctoss.entity.Cost;
 import com.netctoss.entity.Page;
@@ -13,7 +14,7 @@ public interface CostMapperDao {
 	public void addCost(Cost cost);
 	public Cost findById(int id);
 	public void updateCost(Cost cost);
-	public void startFee(int id);
+	public void startFee(Map map);
 	public List<Cost> findPage(Page page);
 	public int findRows();
 	public Cost findByName(String name);

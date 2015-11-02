@@ -36,10 +36,10 @@ public class AccountListController {
 		page.setPage(p);
 		//调用AccountMapperDao查询
 		List<Account> list = dao.findByCondition(page);
+		Account account = list.get(0);
 		model.addAttribute("accounts",list);
 		//统计总页数
 		int totalRows = dao.findRows(page);
-		System.out.println(totalRows);
 		int totalPage = 0;
 		if(totalRows%page.getPageSize()==0){
 			totalPage = totalRows/page.getPageSize();

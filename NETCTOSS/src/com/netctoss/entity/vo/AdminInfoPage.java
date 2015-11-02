@@ -1,6 +1,8 @@
 package com.netctoss.entity.vo;
 
-public class AdminInfoPage {
+import com.netctoss.entity.Page;
+
+public class AdminInfoPage extends Page{
 	private Integer moduleId;
 	private String roleName;
 	public Integer getModuleId() {

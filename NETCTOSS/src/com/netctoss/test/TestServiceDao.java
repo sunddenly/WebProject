@@ -22,8 +22,11 @@ public class TestServiceDao {
 		String conf = "com/netctoss/config/applicationContext.xml";
 		ApplicationContext ac = new ClassPathXmlApplicationContext(conf);
 		ServiceMapperDao dao = ac.getBean("serviceMapperDao",ServiceMapperDao.class);
-		listService(dao);
-		
+		//listService(dao);
+		List<Cost> list = dao.findCostName();
+		for (Cost cost : list) {
+			System.out.println(cost.getCost_id()+","+cost.getName());
+		}
 	}
 	private static void listService(ServiceMapperDao dao) {
 		ServicePage page = new ServicePage();

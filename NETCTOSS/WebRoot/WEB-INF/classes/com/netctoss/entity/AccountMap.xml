@@ -44,4 +44,62 @@
 		</where>
 		order by account_id
 	</select>
+	<select id="findAccountById" parameterType="int" resultType="com.netctoss.entity.Account">
+        SELECT a1.account_id,a1.real_name,a1.idcard_no,a1.login_name,a1.telephone,a1.recommender_id ,
+               a2.idcard_no recommenderIdcardno,a1.status,a1.create_date,a1.pause_date,
+               a1.close_date,a1.last_login_time,a1.last_login_ip,a1.birthdate,
+               a1.email,a1.occupation,a1.gender,a1.mailaddress,a1.zipcode,a1.qq
+       FROM account a1 LEFT JOIN account a2 ON (a1.recommender_id=a2.account_id)
+       WHERE a1.account_id=#{id}
+	</select>
+	<insert id="addAccount" parameterType="com.netctoss.entity.Account">
+		insert into account values(
+			null,
+			#{recommender_id},
+			#{login_name},
+			#{login_passwd},
+			#{status},
+			#{create_date},
+			#{pause_date},
+			#{close_date},
+			#{real_name},
+			#{idcard_no},
+			#{birthdate},
+			#{gender},
+			#{occupation},
+			#{telephone},
+			#{email},
+			#{mailaddress},
+			#{zipcode},
+			#{qq},
+			#{last_login_time},
+			#{last_login_ip}
+		)
+	</insert>
+	<delete id="deleteAccountById" parameterType="int"> 
+		DELETE FROM account
+		WHERE account_id=#{id}
+	</delete>
+	<update id="updateAccount" parameterType="com.netctoss.entity.Account">
+		update account set 
+			real_name=#{real_name},
+			telephone=#{telephone},
+			email=#{email},
+			occupation=#{occupation},
+			gender=#{gender},
+			mailaddress=#{mailaddress},
+			zipcode=#{zipcode},
+			qq=#{qq}
+		where account_id=#{account_id}
+	</update>
+	<update id="pauseAccount" parameterType="java.util.HashMap">
+		update account set 
+		status=1,pause_date=#{time}
+		where account_id=#{id}
+	</update>
+	<update id="startAccount" parameterType="java.util.HashMap">
+		update account set 
+		status=0,create_date=#{time}
+		where account_id=#{id}
+	</update>
 </mapper>

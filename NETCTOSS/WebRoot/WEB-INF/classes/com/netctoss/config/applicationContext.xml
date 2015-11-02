@@ -49,8 +49,20 @@
 		<!-- SpringMVC 配置 -->
 		<context:component-scan base-package="com.netctoss"/>
 		<mvc:annotation-driven/>
+		
+		
 		<!-- 将拦截的静态资源js,css等放过去 -->
 		<mvc:default-servlet-handler/>
+		<!-- 登陆检查拦截器 -->
+		<!-- 
+		<mvc:interceptors>
+			<mvc:interceptor>
+				<mvc:mapping path="/**"/>
+				<mvc:exclude-mapping path="/login/**"/>
+				<bean class="com.netctoss.interceptor.LoginInterceptor"/>
+			</mvc:interceptor>
+		</mvc:interceptors>
+		 -->
 		<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 			<property name="prefix"  value="/WEB-INF/jsp/"/>
 			<property name="suffix"  value=".jsp"/>

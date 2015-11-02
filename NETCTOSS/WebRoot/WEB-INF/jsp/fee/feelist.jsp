@@ -26,7 +26,7 @@
                 var r = window.confirm("确定要启用此资费吗？资费启用后将不能修改和删除。");
                 document.getElementById("operate_result_info").style.display = "block";
                 if(r){
-                	window.location="feestart.from?id="+id;
+                	window.location="/NetCTOSS/fee/start/"+id;
                 }
             }
             //删除
@@ -49,7 +49,10 @@
         <!--Logo区域开始-->
         <div id="header">
             <img src="/NetCTOSS/images/logo.png" alt="logo" class="left"/>
-            <a href="#">[退出]</a>            
+            <c:if test="${user!=null}">
+	            <a href="#">${user}</a>
+            </c:if>
+            <a href="/NetCTOSS/logout/toLogout">[退出]</a>            
         </div>
         <!--Logo区域结束-->
         <!--导航区域开始-->
@@ -82,7 +85,7 @@
                 </div> 
                 <!--启用操作的操作提示-->
                 <div id="operate_result_info" class="operate_success">
-                    <img src="../images/close.png" onclick="this.parentNode.style.display='none';" />
+                    <img src="/NetCTOSS/images/close.png" onclick="this.parentNode.style.display='none';" />
                     删除成功！
                 </div>    
                 <!--数据区域：用表格展示数据-->     
@@ -102,7 +105,7 @@
                         <c:forEach items="${costs}" var="cost">
 	                        <tr>
 	                            <td>${cost.cost_id}</td>
-	                            <td><a href="fee_detail.html">${cost.name}</a></td>
+	                            <td><a href="/NetCTOSS/fee/detail/${cost.cost_id}">${cost.name}</a></td>
 	                            <td>${cost.base_duration } 小时</td>
 	                            <td>${cost.base_cost } 元</td>
 	                            <td>${cost.unit_cost } 元/小时</td>

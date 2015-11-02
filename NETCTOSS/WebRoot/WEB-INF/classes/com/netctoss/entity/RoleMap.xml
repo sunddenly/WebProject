@@ -9,6 +9,10 @@
 		on(r.role_id=m.role_id) 
 		order by r.role_id;
 	</select>
+	<select id="findRoleAll" resultType="com.netctoss.entity.Role">
+		SELECT * 
+		FROM role_info
+	</select>
 	<select id="findPage"
 		parameterType="com.netctoss.entity.Page" 
 		resultMap="roleMap">

@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+﻿<%@ page language="java" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -31,43 +34,43 @@
         <!--导航区域结束-->
         <!--主要区域开始-->
         <div id="main">            
-            <form action="" method="" class="main_form">
+            <form:form cssClass="main_form" commandName="s">
                 <!--必填项-->
                 <div class="text_info clearfix"><span>业务账号ID：</span></div>
-                <div class="input_info"><input type="text" value="1" readonly class="readonly" /></div>
+                <div class="input_info"><input type="text" value="${s.service_id}" readonly class="readonly" /></div>
                 <div class="text_info clearfix"><span>账务账号ID：</span></div>
-                <div class="input_info"><input type="text" value="101" readonly class="readonly" /></div>
+                <div class="input_info"><input type="text" value="${s.account_id}" readonly class="readonly" /></div>
                 <div class="text_info clearfix"><span>客户姓名：</span></div>
-                <div class="input_info"><input type="text" readonly class="readonly" value="张三" /></div>
+                <div class="input_info"><input type="text" readonly class="readonly" value="${s.real_name}" /></div>
                 <div class="text_info clearfix"><span>身份证号码：</span></div>
-                <div class="input_info"><input type="text" readonly class="readonly" value="230111111111111111" /></div>
+                <div class="input_info"><input type="text" readonly class="readonly" value="${s.idcard_no}" /></div>
                 <div class="text_info clearfix"><span>服务器 IP：</span></div>
-                <div class="input_info"><input type="text" value="192.168.0.23" readonly class="readonly" /></div>
+                <div class="input_info"><input type="text" value="${s.unix_host}" readonly class="readonly" /></div>
                 <div class="text_info clearfix"><span>OS 账号：</span></div>
-                <div class="input_info"><input type="text" value="openlab1" readonly class="readonly" /></div>
+                <div class="input_info"><input type="text" value="${s.os_username}" readonly class="readonly" /></div>
                 <div class="text_info clearfix"><span>状态：</span></div>
                 <div class="input_info">
-                    <select disabled>
-                        <option>开通</option>
-                        <option>暂停</option>
-                        <option>删除</option>
-                    </select>                        
+                    <form:select path="status" disabled="true">
+                    	<form:option value="0">开通</form:option>
+                    	<form:option value="1">暂停</form:option>
+                    	<form:option value="2">删除</form:option>
+                    </form:select>                        
                 </div>
                 <div class="text_info clearfix"><span>开通时间：</span></div>
-                <div class="input_info"><input type="text" readonly class="readonly" /></div>
+                <div class="input_info"><input type="text" readonly class="readonly" value="${s.create_date}" /></div>
                 <div class="text_info clearfix"><span>资费 ID：</span></div>
-                <div class="input_info"><input type="text" class="readonly" readonly /></div>
+                <div class="input_info"><input type="text" class="readonly" readonly value="${s.cost_id}"/></div>
                 <div class="text_info clearfix"><span>资费名称：</span></div>
-                <div class="input_info"><input type="text" readonly class="width200 readonly" /></div>
+                <div class="input_info"><input type="text" readonly class="width200 readonly" value="${s.cost_name}" /></div>
                 <div class="text_info clearfix"><span>资费说明：</span></div>
                 <div class="input_info_high">
-                    <textarea class="width300 height70 readonly" readonly>包 20 小时，20 小时以内 24.5 元，超出部分 0.03 元/分钟</textarea>
+                    <textarea class="width300 height70 readonly" readonly value="${s.cost_descr}">包 20 小时，20 小时以内 24.5 元，超出部分 0.03 元/分钟</textarea>
                 </div>  
                 <!--操作按钮-->
                 <div class="button_info clearfix">
-                    <input type="button" value="返回" class="btn_save" onclick="location.href='service_list.html';" />
+                    <input type="button" value="返回" class="btn_save" onclick="history.back()" />
                 </div>
-            </form>
+            </form:form>
         </div>
         <!--主要区域结束-->
         <div id="footer">

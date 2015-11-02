@@ -40,6 +40,6 @@ public class FeeUpdateController {
 		dao.updateCost(cost);
 		//获取session中存储的page信息
 		Page page = (Page)session.getAttribute("page");
-		return "redirect:/fee/list/"+page.getPage();
+		return "redirect:/fee/list/1";
 	}
 }

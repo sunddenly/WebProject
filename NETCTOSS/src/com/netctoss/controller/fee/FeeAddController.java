@@ -18,7 +18,7 @@ public class FeeAddController {
 	@Resource
 	private CostMapperDao dao;
 	//对应/fee/toAdd.from
-	@RequestMapping(value="toAdd",method=RequestMethod.GET)
+	@RequestMapping(value="/toAdd",method=RequestMethod.GET)
 	public String toAdd(){
 		return "fee/feeadd";//进入fee/feeadd.jsp
 	}
