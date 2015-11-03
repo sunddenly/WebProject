@@ -10,7 +10,6 @@
         <link type="text/css" rel="stylesheet" media="all" href="/NetCTOSS/styles/global_color.css" />
         <script type="text/javascript" src="/NetCTOSS/js/jquery-1.11.1.js"></script>
         <script type="text/javascript" src="/NetCTOSS/js/jquery.form.js"></script>
-        <script type="text/javascript" src="/NetCTOSS/js/init.js"></script>
         <script language="javascript" type="text/javascript">
         	// wait for the DOM to be loaded 
 			$(document).ready(function() { 

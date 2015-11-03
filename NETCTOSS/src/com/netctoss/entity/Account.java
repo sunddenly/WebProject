@@ -36,21 +36,33 @@ public class Account implements Serializable{
 	private Date pauseDate;
 	private Date closeDate;     
 	public Date getCreateDate() {
-		createDate = new Date(create_date.getTime());
+		if(create_date!=null){
+			createDate = new Date(create_date.getTime());
+		}else{
+			createDate = null;
+		}
 		return createDate;
 	}
 	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
 	}
 	public Date getPauseDate() {
-	    pauseDate = new Date(pause_date.getTime());
+		if(pause_date != null){
+			pauseDate = new Date(pause_date.getTime());
+		}else{
+			pauseDate = null;
+		}
 		return pauseDate;
 	}
 	public void setPauseDate(Date pauseDate) {
 		this.pauseDate = pauseDate;
 	}
 	public Date getCloseDate() {
-		closeDate = new Date(close_date.getTime());
+		if(closeDate != null){
+			closeDate = new Date(close_date.getTime());
+		}else{
+			closeDate = null;
+		}
 		return closeDate;
 	}
 	public void setCloseDate(Date closeDate) {

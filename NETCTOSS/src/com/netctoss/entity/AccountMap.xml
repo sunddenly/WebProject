@@ -102,4 +102,10 @@
 		status=0,create_date=#{time}
 		where account_id=#{id}
 	</update>
+	<select id="findAccountByIdcardno" parameterType="java.lang.String" 
+			resultType="com.netctoss.entity.Account">
+		SELECT account_id,login_name,status
+		FROM account
+		WHERE idcard_no=#{idcard_no}
+	</select>
 </mapper>

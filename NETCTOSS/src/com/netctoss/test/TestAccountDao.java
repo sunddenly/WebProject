@@ -19,6 +19,16 @@ public class TestAccountDao {
 		String conf = "com/netctoss/config/applicationContext.xml";
 		ApplicationContext ac = new ClassPathXmlApplicationContext(conf);
 		AccountMapperDao dao = ac.getBean("accountMapperDao",AccountMapperDao.class);
+		//findCondition(dao);
+		findAccountByIdcard(dao);
+	}
+
+	private static void findAccountByIdcard(AccountMapperDao dao) {
+		Account account = dao.findAccountByIdcardno("330682196903190613");
+		System.out.println(account.getAccount_id());
+	}
+
+	private static void findCondition(AccountMapperDao dao) {
 		AccountPage page = new AccountPage();
 		page.setPage(2);
 		page.setStatus("-1");

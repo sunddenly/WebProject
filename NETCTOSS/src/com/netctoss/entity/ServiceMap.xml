@@ -61,4 +61,15 @@
 		select cost_id,name
 		from cost
 	</select>
+	<select id="validateOsusername" parameterType="java.util.HashMap" 
+			resultType="java.lang.String">
+		SELECT account_id
+		FROM service
+		WHERE unix_host=#{unixHost}
+		AND os_username=#{osUsername}
+	</select>
+	<insert id="addService" parameterType="com.netctoss.entity.Service">
+		INSERT INTO service
+		VALUES (null,#{account_id},#{unix_host},#{os_username},#{login_passwd},0,DEFAULT,null,null,#{cost_id})
+	</insert>
 </mapper>

@@ -14,6 +14,7 @@ public interface AccountMapperDao {
 	public List<Account> findByCondition(AccountPage page);
 	public int findRows(AccountPage page);
 	public Account findAccountById(Integer id);
+	public Account findAccountByIdcardno(String idCard);
 	public void addAccount(Account account);
 	public void deleteAccountById(Integer id);
 	public void pauseAccount(Map map);
