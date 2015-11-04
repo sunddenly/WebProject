@@ -52,10 +52,7 @@
                     document.getElementById("divPwds").style.display = "none";
             }
             //提交表单信息
-            function doSubmit(){
-            	
-            	$("#updateForm").submit();
-            }
+           //$("#updateForm").submit();
         </script>
     </head>
     <body>

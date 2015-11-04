@@ -17,4 +17,7 @@ public interface ServiceMapperDao {
 	public List<Cost> findCostName();
 	public String validateOsusername(Map map);
 	public void addService(Service service);
+	public void updateService(Map map);
+	public void serviceStart(Integer id);
+	public void serviceStop(Integer id);
 }

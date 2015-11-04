@@ -72,4 +72,19 @@
 		INSERT INTO service
 		VALUES (null,#{account_id},#{unix_host},#{os_username},#{login_passwd},0,DEFAULT,null,null,#{cost_id})
 	</insert>
+	<update id="updateService" parameterType="java.util.HashMap">
+		UPDATE service
+		SET cost_id=#{cost_id}
+		WHERE service_id=#{service_id}
+	</update>
+	<update id="serviceStart" parameterType="int">
+		UPDATE service
+		SET status=0
+		WHERE service_id=#{service_id}
+	</update>
+	<update id="serviceStop" parameterType="int">
+		UPDATE service
+		SET status=1
+		WHERE service_id=#{service_id}
+	</update>
 </mapper>

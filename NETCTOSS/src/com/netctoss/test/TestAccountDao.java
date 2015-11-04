@@ -24,7 +24,7 @@ public class TestAccountDao {
 	}
 
 	private static void findAccountByIdcard(AccountMapperDao dao) {
-		Account account = dao.findAccountByIdcardno("330682196903190613");
+		Account account = dao.findAccountByIdcardno("330682196903190600");
 		System.out.println(account.getAccount_id());
 	}
 

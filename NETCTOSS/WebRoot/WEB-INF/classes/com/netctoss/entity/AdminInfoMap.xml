@@ -91,6 +91,11 @@
 			#{id}
 		</foreach>
 	</update>
+	<update id="modiPwd" parameterType="com.netctoss.entity.AdminInfo">
+		UPDATE admin_info
+		SET password=#{password}
+		WHERE admin_code=#{admin_code}
+	</update>
 	<!-- 删除admin_role信息 -->
 	<delete id="deleteAdminRoleById" parameterType="int">
 		delete from admin_role 

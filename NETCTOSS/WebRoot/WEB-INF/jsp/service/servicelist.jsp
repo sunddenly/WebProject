@@ -15,8 +15,7 @@
                 var detailDiv = a.parentNode.getElementsByTagName("div")[0];
                 if (flag) {
                     detailDiv.style.display = "block";
-                }
-                else
+                }else
                     detailDiv.style.display = "none";
             }
             //删除
@@ -28,6 +27,7 @@
             function setState() {
                 var r = window.confirm("确定要开通此业务账号吗？");
                 document.getElementById("operate_result_info").style.display = "block";
+                
             }
             function doSearch(page){
             	var osUsername = $("#osUsername").val();
@@ -58,6 +58,55 @@
             	url += "/"+page;
             	window.location = url;//用js以get方式发送请求
             }
+            //开启业务
+            function startAccount(id){
+            	var r = window.confirm("确定要开通此业务账号吗？");
+            	var no = $("#no").html();
+            	if(r){
+	            	$.ajax({
+	   					type: "POST",
+					    url: "/NetCTOSS/service/start/"+id,
+					    data: "no="+no,//{"no":no}
+					    success: function(ok){
+							var result = $("#operate_result_info span");
+	                		var parent = $("#operate_result_info");
+	                		if(ok){
+	                			result.html("开通成功！");
+	                			parent.attr("class","operate_success");
+	                			parent.css("display","block");
+	                		}else{
+	                			parent.attr("class","operate_fail");
+	                			result.html("开通失败！其业务账号为暂停状态。");
+	                			parent.css("display","block");
+	                		}
+	   					}
+					});
+            	}
+            }
+            //暂停业务
+            function pauseAccount(id){
+            	var r = window.confirm("确定要暂停此业务账号吗？");
+            	if(r){
+	            	$.ajax({
+	   					type: "PUT",
+					    url: "/NetCTOSS/service/stop/"+id,
+					    success: function(ok){
+					    	var result = $("#operate_result_info span");
+	                		var parent = $("#operate_result_info");
+	                		if(ok){
+	                			result.html("暂停成功！");
+	                			parent.attr("class","operate_success");
+	                			parent.css("display","block");
+	                		}else{
+	                			parent.attr("class","operate_fail");
+	                			result.html("暂停失败！数据并发错误。");
+	                			parent.css("display","block");
+	                		}
+	   					}
+					});
+            	}
+            }
+            
         </script>
     </head>
     <body>
@@ -108,11 +157,11 @@
                     <div><input type="button" value="搜索" class="btn_search" onclick="doSearch(1)"/></div>
                     <input type="button" value="增加" class="btn_add" onclick="location.href='/NetCTOSS/service/toAdd';" />
                 </div>  
-                <!--删除的操作提示-->
+                <!--删除等的操作提示-->
                 <div id="operate_result_info" class="operate_success">
-                    <img src="/NetCTOSS/images/close.png" onclick="this.parentNode.style.display='none';" />
-                    删除成功！
-                </div>   
+                    <img src="/NetCTOSS/images/close.png" onclick="location.href='/NetCTOSS/service/list/*/*/*/-1/1'" />
+                    <span></span>
+                </div>  
                 <!--数据区域：用表格展示数据-->     
                 <div id="data">            
                     <table id="datalist">
@@ -131,22 +180,39 @@
 	                    <tr>
 	                        <td><a href="/NetCTOSS/service/${s.service_id}" title="查看明细">${s.service_id}</a></td>
 	                        <td>${s.account_id}</td>
-	                        <td>${s.idcard_no}</td>
+	                        <td id="no">${s.idcard_no}</td>
 	                        <td>${s.real_name}</td>
 	                        <td>${s.os_username }</td>
-	                        <td>${s.status }</td>
+	                        <td>
+	                        	<c:choose>
+	                        		<c:when test="${s.status=='0'}">开通</c:when>
+	                        		<c:when test="${s.status=='1'}">暂停</c:when>
+	                        		<c:otherwise>删除</c:otherwise>
+	                        	</c:choose>
+							</td>
 	                        <td>${s.unix_host}</td>
 	                        <td>
-	                            <a class="summary"  onmouseover="showDetail(true,this);" onmouseout="showDetail(false,this);">包 20 小时</a>
+	                            <a class="summary"  onmouseover="showDetail(true,this);" onmouseout="showDetail(false,this);">${s.cost_name}</a>
 	                            <!--浮动的详细信息-->
 	                            <div class="detail_info">
 	                                ${s.cost_descr}
 	                            </div>
 	                        </td>                            
 	                        <td class="td_modi">
-	                            <input type="button" value="暂停" class="btn_pause" onclick="setState();" />
-	                            <input type="button" value="修改" class="btn_modify" onclick="location.href='service_modi.html';" />
-	                            <input type="button" value="删除" class="btn_delete" onclick="deleteAccount();" />
+	                        	<c:choose>
+		                        	<c:when test="${s.status=='0'}">
+		                        		<input type="button" value="暂停" class="btn_pause" onclick="pauseAccount(${s.service_id})" />
+			                            <input type="button" value="修改" class="btn_modify" onclick="location.href='/NetCTOSS/service/${s.service_id}/toEdit';" />
+			                            <input type="button" value="删除" class="btn_delete" onclick="deleteAccount(${account.account_id});" />                     
+		                        	</c:when>
+		                        	<c:when test="${s.status=='1'}">
+		                        		<input type="button" value="开通" class="btn_pause" onclick="startAccount(${s.service_id})" />
+			                            <input type="button" value="修改" class="btn_modify" onclick="location.href='/NetCTOSS/service/${s.service_id}/toEdit';" />
+			                            <input type="button" value="删除" class="btn_delete" onclick="deleteAccount(${account.account_id});" />                     
+		                        	</c:when>
+		                        	<c:otherwise>
+		                        	</c:otherwise>
+		                        </c:choose>
 	                        </td>
 	                    </tr>
                     </c:forEach>

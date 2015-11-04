@@ -31,8 +31,8 @@ public class ResetPwdController {
 			@RequestParam("ids") String ids,
 			Model model){
 		if(ids!=null){
-			//List<Integer> list = buildIdList(ids);
-			//dao.resetPwd(list);
+			List<Integer> list = buildIdList(ids);
+			dao.resetPwd(list);
 			return true;
 		}else{
 			return false;

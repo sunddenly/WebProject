@@ -1,5 +1,4 @@
 
-/* 全局样式 */
 body, p, div, ul, ol, li, dl, dd, dt, h1, h2, h3, h4, h5, h6, form, input, select, label, table, tr, td, th, thead, tbody, tfoot
 {
     margin: 0px auto;
@@ -101,13 +100,12 @@ textarea
     display: block;
 }
 
-/*清除浮动*/
+
 .clearfix
 {
     clear: both;
 }
 
-/*浮动对象*/
 .left
 {
     float: left;
@@ -118,14 +116,14 @@ textarea
     float: right;
     display: inline;
 }
-/*布局*/
+
 #header, #menu, #footer
 {
     width: 960px;
     margin: 0px auto;
 }
 
-/*页头部分：header*/
+
 #header
 {
     text-align: right;
@@ -138,7 +136,7 @@ textarea
     font-weight: bold;
 }
 
-/*导航部分：navi*/
+
 #navi
 {
     width: 100%;
@@ -162,9 +160,10 @@ textarea
     height: 77px;
     overflow: hidden;
     float: left;
+    margin-left: 20px;
 }
 
-/*正文区域：main*/
+
 #main
 {
     min-height: 410px;
@@ -183,7 +182,7 @@ form.main_form
 }
 
 
-/*正文：查询条件部分*/
+
 div.search_add
 {
     width: 910px;
@@ -202,7 +201,7 @@ div.search_add span
     margin-left: 5px;
 }
 
-/*正文：数据表格部分*/
+
 #data
 {
     min-height: 330px;
@@ -255,7 +254,7 @@ th.th_select_all
     border-width: 0px;
 }
 
-/* 表格中的显示详细 */
+
 a.summary
 {
     cursor: default;
@@ -277,14 +276,14 @@ div.detail_info
     text-align: left;
 }
 
-/* 正文：表单部分（div实现方式） */
+
 div.text_info
 {
     width: 200px;
     text-align: right;
     float: left;
     height: 40px;
-    margin-top: 5px;/*5*/
+    margin-top: 5px;
     /*border:1px solid black;*/
     margin-bottom:5px;
 }
@@ -432,7 +431,7 @@ span.required
     font-size:10pt;
 }
 
-/* 保存操作后的提示消息 */
+
 #save_result_info
 {
     width: 600px;
@@ -443,7 +442,7 @@ span.required
     font-weight:bold;
 }
 
-/* 删除操作后的提示消息 */
+
 #operate_result_info
 {
     width: 400px;
@@ -464,7 +463,7 @@ span.required
     cursor: pointer;
 }
 
-/* 正文：分页功能区 */
+
 #pages
 {
     width: 940px;
@@ -482,7 +481,7 @@ span.required
     padding: 5px 9px;
 }
 
-/*页脚部分：footer*/
+
 #footer
 {
     width: 960px;
@@ -492,7 +491,7 @@ span.required
     text-align: center;
 }
 
-/* 表单上的元素：控件 */
+
 span.readonly
 {
     line-height: 28px;
@@ -561,7 +560,7 @@ input.sort_asc, input.sort_desc
     padding-right: 10px;
 }
 
-/* 主页 */
+
 #index_navi
 {
     width: 100%;
@@ -584,7 +583,7 @@ input.sort_asc, input.sort_desc
     float: left;
 }
 
-/* 登录页面 */
+
 div.login_box
 {
     width: 450px;
@@ -623,7 +622,7 @@ td.login_button img
     border-width: 0px;
 }
 
-/* 错误页面 */
+
 #error
 {
     width: 960px;
@@ -635,7 +634,7 @@ td.login_button img
     text-decoration: underline;
     cursor: pointer;
 }
-/* 报表页面 */
+
 #report_main
 {  
     min-height: 420px;

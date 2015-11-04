@@ -20,5 +20,6 @@ public interface AdminInfoMapperDao {
 	public void deleteAdminRoleById(Integer id);
 	public void deleteAdminById(Integer id);
 	public void updateAdminInfo(AdminInfo info);
+	public void modiPwd(AdminInfo info);
 	
 }
