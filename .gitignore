@@ -49,4 +49,5 @@ target/
 #忽略eclipse的工程文件
 .settings/
 .mymetadata
+.idea
 *.MF
