@@ -3,40 +3,6 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>Insert title here</title>
 		<script type="text/javascript">
-			function User(id,name){//构造函数
-    			//属性
-			    this.id = id;
-			    this.name = name;
-			    
-			}
-			User.protoType.getString = function(){
-			    return "124";
-			}
-
-			function Student(n1, a1) {//定义一个对象的模版：Student
-				this.name = n1;//用了this关键字，就认为Student是一个类，而不是方法
-				this.age = a1;
-				this.introduceSelf = function() {
-					alert("i am " + this.name + ", i am " + this.age
-							+ " year old");
-				}
-				this.introduceSelf2 = function() {
-					return "123";
-				}
-			}
-			Student.prototype.introduceSelf3=function(){
-			    alert("abbb");
-			}
-
-			function testOwnObject() {
-				//测试自定义的Student对象
-				var p1 = new Student("mary", 18);
-				var p2 = new Student("join", 20);
-				alert(p1.name);
-				alert(p2.age);
-				p1.introduceSelf();
-				p2.introduceSelf();
-			}
 			function f1() {
 				//一个javascript对象
 				var obj = {
@@ -54,18 +20,9 @@
 				var jsonStr = '{"name":"Luffy","age":17}';
 				//使用原生的JSONd对象的parse把javascript对象转换为字符串
 				var obj = JSON.parse(jsonStr);
+				
 				alert(obj);
 				alert(obj.name + ":" + obj.age);
-			}
-			function f3() {
-				//实例化
-				var user = new User();
-				user.id = 1;
-				user.name = 'tom';
-				alert(user);
-				alert(user.id);
-				var p1 = new Student("mary", 18);
-				p1.introduceSelf3();
 			}
 		</script>
 	</head>

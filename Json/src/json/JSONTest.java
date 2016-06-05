@@ -32,7 +32,7 @@ public class JSONTest {
 		//转变成java对象
 		//People.class返回的是关于People的类型描述信息的对象是一种Class类型
 		People p =(People)obj.toBean(obj,People.class);
-		System.out.println(p);
+		System.out.println(p.toString());
 	}
 	public static void f4(){
 		//json字符串--->java对象转换

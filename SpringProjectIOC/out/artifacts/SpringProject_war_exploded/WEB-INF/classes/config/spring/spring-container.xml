@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-4.0.xsd
+	   http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+    <!-- 1.构造器实例化 -->
+    <bean id="calenderObj1" class="java.util.GregorianCalendar"></bean>
+    <!-- 2.使用静态工厂方法实例化-->
+    <bean id="calenderObj2" class="java.util.Calendar" factory-method="getInstance"></bean>
+    <!-- 3. 实例工厂方法实例化-->
+    <bean id="dateObj" factory-bean="calenderObj2" factory-method="getTime"></bean>
+</beans>

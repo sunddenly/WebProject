@@ -1,0 +1,83 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>Insert title here</title>
+		<script type="text/javascript" src="js/json.js"></script>
+		<script type="text/javascript" src="js/jquery-2.2.4.js"></script>
+		<script type="text/javascript" src="js/query-json.js"></script>
+		<script type="text/javascript">
+			function test1(){
+				var str = '{"name":"张三","age":24}';
+				var obj = eval("("+str+")")
+				alert(obj.name+","+obj.age);
+			}
+			function test2(){
+			    var obj = {
+			         name:"张三",
+			         age:24,
+			         toString:function(){
+			         	return this.name+","+this.age
+			         	}
+			    };
+			    var JsonStr = JSON.stringify(obj);
+			    alert(JsonStr);
+			    
+			    var obj=JSON.parse(JsonStr);
+			    alert(obj.name+","+obj.age)
+			}
+			
+			function test3(){
+			    var obj = {
+			         name:"张三",
+			         age:24,
+			         toString:function(){
+			         	return this.name+","+this.age
+			         }
+			    };
+			    
+			    var JsonStr = obj.toJSONString()
+			    alert(JsonStr);
+			    
+			    var obj=JsonStr.parseJSON()
+			    alert(obj.name+","+obj.age)
+			}
+			function test3(){
+			    var obj = {
+			         name:"张三",
+			         age:24,
+			         toString:function(){
+			         	return this.name+","+this.age
+			         }
+			    };
+			    
+			    var JsonStr = obj.toJSONString()
+			    alert(JsonStr);
+			    
+			    var obj=JsonStr.parseJSON()
+			    alert(obj.name+","+obj.age)
+			}
+			function test4(){
+			    var obj = {
+			         name:"张三",
+			         age:24,
+			         toString:function(){
+			         	return this.name+","+this.age
+			         }
+			    };
+			    
+			    var JsonStr=$.toJSON(obj);
+			    alert(JsonStr);
+			    
+				var obj = $.parseJSON(JsonStr); //报错知道如何解决
+				alert(obj.name+","+obj.age);
+			}
+
+		</script>
+	</head>
+	<body>
+		<input type="button" onclick="test1()" value="JS:eval"/><br/>
+		<input type="button" onclick="test2()" value="浏览器:JSON"/><br/>
+		<input type="button" onclick="test3()" value="官网:JSON"/><br/>
+		<input type="button" onclick="test4()" value="JQuery:JSON"/><br/>
+	</body>
+</html>

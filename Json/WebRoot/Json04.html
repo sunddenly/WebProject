@@ -2,33 +2,54 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>Insert title here</title>
+		<script type="text/javascript" src="js/jquery-1.11.1.js"></script>
 		<script type="text/javascript">
-			function Student(n1, a1) {//定义一个对象的模版：Student
-				this.name = n1;//用了this关键字，就认为Student是一个类，而不是方法
-				this.age = a1;
-				this.introduceSelf = function() {
-					alert("i am " + this.name + ", i am " + this.age
-							+ " year old");
-				}
-				this.introduceSelf2 = function() {
-					return "123";
-				}
+			function User(id,name){//构造函数
+			 	//属性
+			    this.id = id;
+			    this.name = name;
+			    //方法
+			    this.introduce=function(){
+			    	alert("My name is "+this.name);
+			    }
+			} 
+			function test(){
+			   var u={id:2,name:'tom','introduce':function(){return "123"}};
+			   alert(u.introduce());
+			   //Js对象===>JSON格式数据
+			   var user = new User(1,'Lisa');//创建js对象
+			   user.introduce();//调用js对象方法
+			   var JsonStr = JSON.stringify(user);//对象转换为Json格式字符串
+			   alert(JsonStr);
+			   
+			   //JSON格式数据==>JS对象
+			   JsonStr='{"name":"Jeny","id":27}';
+			   var user = JSON.parse(JsonStr);//Json格式字符串转换为js对象
+			   alert(user.name+","+user.id);
+			   user = $.extend({},new User(),user);//Jquery对象合并
+			   user.introduce();
 			}
-			Student.prototype.introduceSelf3=function(){
-			    return "abbb";
-			}
-
-			function testOwnObject() {
-				//测试自定义的Student对象
-				var p1 = new Student("mary", 18);
-				alert(p1.name);
-				p1.introduceSelf();
-				alert(p1.introduceSelf2());
-				alert(p1.introduceSelf3());
+			
+			function test(){
+			   var u={id:2,name:'tom','introduce':function(){return "123"}};
+			   
+			   //Js对象===>JSON格式数据
+			   var user = new User(1,'Lisa');//创建js对象
+			   user.introduce();//调用js对象方法
+			   var JsonStr = JSON.stringify(user);//对象转换为Json格式字符串
+			   alert(JsonStr);
+			   
+			   //JSON格式数据==>JS对象
+			   JsonStr='{"name":"Jeny","id":27}';
+			   var user = JSON.parse(JsonStr);//Json格式字符串转换为js对象
+			   alert(user.name+","+user.id);
+			   user = $.extend({},new User(),user);//Jquery对象合并
+			   user.introduce();
 			}
 		</script>
 	</head>
 	<body>
-		<input type="button" onclick="testOwnObject()" value="test"/><br/>
+		<input type="button" onclick="test()" value="js对象转为JSON格式数据"/><br/>
+		<input type="button" onclick="test2()" value="JSON格式数据转为js对象"/><br/>
 	</body>
 </html>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+       http://www.springframework.org/schema/util
+       http://www.springframework.org/schema/util/spring-util.xsd">
+    <!-- 引入式集合注入 -->
+    <util:properties id="jdbcProperties" location="classpath:config/db/db.properties"/>
+    <!--Setter注入+表达式注入 -->
+    <bean id="dataSource" class="com.hebut.ioc.setter.JDBCDataSource">
+        <property name="driver" value="#{jdbcProperties.driver}"/>
+        <property name="url" value="#{jdbcProperties.url}"/>
+        <property name="user" value="#{jdbcProperties.username}"/>
+        <property name="pwd" value="#{jdbcProperties.password}"/>
+    </bean>
+
+    <bean id="userDao" class="com.hebut.ioc.constrcutor.MySqlUserDao">
+        <constructor-arg name="dataSource" ref="dataSource"/>
+    </bean>
+    <!--按类型自动注入 -->
+    <bean id="userService" class="com.hebut.ioc.autodi.UserService" autowire="byType"/>
+</beans>

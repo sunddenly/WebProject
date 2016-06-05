@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+       http://www.springframework.org/schema/util
+       http://www.springframework.org/schema/util/spring-util.xsd">
+    <!-- 引入式集合注入 -->
+    <util:properties id="db" location="classpath:config/db/db.properties"/>
+    <!--基本参数注入:表达式注入-->
+    <bean id="ds" class="org.apache.commons.dbcp.BasicDataSource">
+        <property name="url" value="#{db.url}"/>
+        <property name="driverClassName" value="#{db.driver}"/>
+        <property name="username" value="#{db.username}"/>
+        <property name="password" value="#{db.password}"/>
+    </bean>
+    <!--基本参数注入:表达式注入-->
+    <bean id="foo" class="com.hebut.ioc.param.expression.Foo">
+        <property name="fooName" value="Hello"/>
+    </bean>
+    <bean id="bar" class="com.hebut.ioc.param.expression.Bar">
+        <property name="barName" value="#{foo.fooName}"/>
+    </bean>
+</beans>
