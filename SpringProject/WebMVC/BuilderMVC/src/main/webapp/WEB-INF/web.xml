@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+         http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+
+
+    <display-name>SpringMVCDemo Web Application</display-name>
+
+    <display-name>SpringMVCDemo Web Application</display-name>
+    <servlet>
+        <servlet-name>SpringMvc</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <!--指定Spring配置文件路径，以classpath方式指定，Tomcat启动时就加载Spring容器 -->
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+<!--            <param-value>classpath:/config/spring/spring-mvc-build-file.xml</param-value>-->
+<!--            <param-value>classpath:/config/spring/spring-mvc-build-annotation.xml</param-value>-->
+            <param-value>classpath:/config/spring/spring-mvc-webbasic.xml</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SpringMvc</servlet-name>
+        <url-pattern>*.from</url-pattern>
+    </servlet-mapping>
+
+</web-app>
+        

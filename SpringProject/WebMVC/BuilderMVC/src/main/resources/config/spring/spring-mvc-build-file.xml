@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+    <!--定义请求处理映射组件-->
+    <bean id="hadlerMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+        <!--指定请求和Controller间的映射,urlMapping是一个map结构的映射表-->
+        <property name="mappings" ref="urlMappings"/>
+    </bean>
+    <!--定义请求映射表-->
+    <util:properties id="urlMappings">
+        <prop key="/hello.from">helloController</prop>
+    </util:properties>
+    <!--helloController控制器配置没有现有顺序 -->
+    <bean id="helloController" class="com.hebut.mvc.builder.xml.HelloController"/>
+    <!--定义视图解析器ViewResolver组件 -->
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/views/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+</beans>
