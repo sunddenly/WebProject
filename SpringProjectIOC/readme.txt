@@ -36,7 +36,12 @@ container===>为Spring容器、以及Spring容器加载Bean
 Spring 注解做了两件事情
 1. 声明组件，加载组件到Spring容器
 2. 依赖管理，指定组件的依赖关系，Bean之间的组合
-===========
+===========SPring IOC 组件======
+spring-context
+spring-core
+spring-beans
+spring-expression
+commons-logging
 
 
 
