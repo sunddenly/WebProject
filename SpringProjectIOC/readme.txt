@@ -42,6 +42,13 @@ spring-core
 spring-beans
 spring-expression
 commons-logging
+===========================
+@Service====>UserService 
+@Resource(name="mysqlUserDao")===>UserService.userDao;
+@Repository("userDao")===>MySqlUserDao 
+@Autowired/@Qualifier===>MySqlUserDao.dataSource
+@Component("jdbcDataSource")=====>JDBCDataSource
+
 
 
 
