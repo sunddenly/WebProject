@@ -57,6 +57,7 @@ public class JDBCDataSource implements Serializable {
     }
     public Connection getConnection() throws SQLException{
         Connection conn = DriverManager.getConnection(url, user, pwd);
+        System.out.println(conn);
         return conn;
     }
     public void close(Connection conn)  {
