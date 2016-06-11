@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!-- 不指定视图解析解析器，使用SpringMVC提供默认视图解析器InternalResourceViewResolver
+         测试SpringMVC对InternalResourceViewResolver的默认配置
+    -->
+    <bean name="/hello.form" class="com.hebut.controller.HelloHandler"/>
+    <bean name="/login.form" class="com.hebut.controller.LoginHandler"/>
+</beans>

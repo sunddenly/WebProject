@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!-- Spring MVC 容器，默认情况下会提供一个不带有前缀和后缀的视图解析器:InternalResourceViewResolver，
+         其对应默认解析相对路径为："/webapp/"，默认解析的视图后缀为.jsp
+         开发者，可以按如下方式：自定义视图解析路径和视图文件后缀名
+         对Contoller返回的视图，进行物理视图位置转换，解析为真实的物理视图路径
+    -->
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/views/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+    <!--
+        在搭建SpingMVC时，需要指定映射器handlerMapping和适配器HandlerAdapter
+            1. handlerMapping：映射请求到后台处理器Controller
+            2. HandlerAdapter：完成对处理器Controler中的具体方法调度
+        当程序没有指定handlerMapping和HandlerAdapter时，Spring MVC提供了一些默认的映射器和适配器来进行注意匹配
+
+        SpringMVC可以和默认的映射其器和适配器进行匹配，找到一对相匹配的映射器和适配器
+        例如：本程序没有使用注解，因此：
+            1. 默认映射器只能使用：BeanNameUrlHandlerMapping，一个默认适配器DefaultAnnotationHandlerMapping，只能在使用注解时才能参与匹配
+            2. 默认适配器可以使用：SimpleControllerHandlerAdapter或HttpRequestHandlerAdapterr，具体要看Hanlder所实现的接口或约束
+               2.1 HelloHandler实现了Controller接口，所以匹配的是SimpleControllerHandlerAdapter
+               2.2 LoginHandler实现了HttpRequestHandler接口，所以匹配的是HttpRequestHandlerAdapter
+    -->
+    <!--下面这段代码可加可不加，
+    <bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"/>
+    <bean class="org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter"/>
+    <bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter"/>
+    -->
+    <bean name="/hello.form" class="com.hebut.controller.HelloHandler"/>
+    <bean name="/login.form" class="com.hebut.controller.LoginHandler"/>
+</beans>
