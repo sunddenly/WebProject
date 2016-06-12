@@ -5,6 +5,7 @@
 >> 1. HandlerMapping：Spring MVC 默认不指定
 >> 2. HandlerAdapter：Spring MVC 默认不指定
 >> 3. ViewRsolver：Spring MVC 默认不指定
+
 ---
 
 **默认视图解析器**   
