@@ -1,4 +1,5 @@
 #### Spring MVC 案例
+---
 **项目结构**  
 > Spring MVC    
 >> 1. XMLDefultBuild: 基于XML的项目Spring MVC项目搭建  
