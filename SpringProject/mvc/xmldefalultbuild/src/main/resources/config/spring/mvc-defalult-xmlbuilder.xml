@@ -13,11 +13,6 @@
         <property name="suffix" value=".jsp"/>
     </bean>
     <!--
-        在搭建SpingMVC时，需要指定映射器handlerMapping和适配器HandlerAdapter
-            1. handlerMapping：映射请求到后台处理器Controller
-            2. HandlerAdapter：完成对处理器Controler中的具体方法调度
-        当程序没有指定handlerMapping和HandlerAdapter时，Spring MVC提供了一些默认的映射器和适配器来进行注意匹配
-
         SpringMVC可以和默认的映射其器和适配器进行匹配，找到一对相匹配的映射器和适配器
         例如：本程序没有使用注解，因此：
             1. 默认映射器只能使用：BeanNameUrlHandlerMapping，一个默认适配器DefaultAnnotationHandlerMapping，只能在使用注解时才能参与匹配

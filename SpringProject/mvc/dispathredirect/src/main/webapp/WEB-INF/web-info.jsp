@@ -9,7 +9,7 @@
     <body>
         <%--<%= request.getContextPath() %>--%>
         <h3>应用：${pageContext.request.contextPath}</h3>
-        目录：wepapps/welcome/headpage.jsp:<br/>
-        信息：欢迎来到河北工业大学
+        目录：wepapps/WEB-INF/web-info.jsp<br/>
+        信息：${info}
     </body>
 </html>

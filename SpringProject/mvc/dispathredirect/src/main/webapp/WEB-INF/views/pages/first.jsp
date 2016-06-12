@@ -7,6 +7,9 @@
     <title></title>
 </head>
 <body>
-<h3>webapp/welcome/headpage:欢迎来到河北工业大学</h3>
+    <%--<%= request.getContextPath() %>--%>
+    <h3>应用：${pageContext.request.contextPath}</h3>
+    目录：wepapps/WEB-INF/view/pages/first.jsp<br/>
+    信息：${info}
 </body>
 </html>

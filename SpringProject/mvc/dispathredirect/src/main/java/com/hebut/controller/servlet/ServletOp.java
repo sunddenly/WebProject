@@ -1,4 +1,4 @@
-package com.hebut.controller.spring;
+package com.hebut.controller.servlet;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,8 +17,15 @@ import java.io.IOException;
 public class ServletOp {
     @RequestMapping("/dispatch.form")
     public void dispatch(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        req.setAttribute("info","servlet 转发");
+        req.setAttribute("info","servlet 转发请求");
         RequestDispatcher dispatcher = req.getSession().getServletContext().getRequestDispatcher("/spring/index.form");
+        dispatcher.forward(req,res);
+        //return;
+    }
+    @RequestMapping("/dispatch/root.form")
+    public void dispatch22(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        req.setAttribute("info","servlet 转发视图");
+        RequestDispatcher dispatcher = req.getSession().getServletContext().getRequestDispatcher("/WEB-INF/web-info.jsp");
         dispatcher.forward(req,res);
         //return;
     }

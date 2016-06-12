@@ -6,7 +6,10 @@
 <head>
     <title></title>
 </head>
-<body>
-    <h3>WEB-INF/index.jsp : Spring MVC 欢迎====>${info}</h3>
-</body>
+    <body>
+        <%--<%= request.getContextPath() %>--%>
+        <h3>应用：${pageContext.request.contextPath}</h3>
+        目录：wepapps/WEB-INF/view/index.jsp<br/>
+        信息：${info}
+    </body>
 </html>

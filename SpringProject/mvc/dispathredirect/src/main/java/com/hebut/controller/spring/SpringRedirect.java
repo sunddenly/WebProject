@@ -1,4 +1,4 @@
-package com.hebut.controller.servlet;
+package com.hebut.controller.spring;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -51,4 +51,5 @@ public class SpringRedirect {
         request.getSession().setAttribute("describe","Spring 重定向请求到Controller");
         return "redirect:/welcome/headpage.jsp";//"/"=="/appname/"
     }
+
 }

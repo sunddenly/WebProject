@@ -7,6 +7,9 @@
     <title></title>
 </head>
 <body>
-    <h3>WEB-INF:Hello world====> ${describe}</h3>
+    <%--<%= request.getContextPath() %>--%>
+    <h3>应用：${pageContext.request.contextPath}</h3>
+    目录：wepapps/WEB-INF/view/hello.jsp<br/>
+    信息：${info}
 </body>
 </html>

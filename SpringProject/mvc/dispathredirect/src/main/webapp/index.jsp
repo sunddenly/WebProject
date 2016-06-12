@@ -6,7 +6,9 @@
 <head>
     <title></title>
 </head>
-<body>
-    <h3>mvv-req: wepapps/index.jsp:Spring MVC 欢迎===> ${info}</h3>
+    <%--<%= request.getContextPath() %>--%>
+    <h3>应用：${pageContext.request.contextPath}</h3>
+     目录：wepapps/index.jsp:<br/>
+     信息：${info}
 </body>
 </html>
