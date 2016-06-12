@@ -7,7 +7,6 @@
 >> 3. ViewRsolver：Spring MVC 默认不指定
 
 ---
-
 **默认视图解析器**   
 ```
    1. Spring MVC提供的默认视图解析器，没有设置前缀和后缀。
