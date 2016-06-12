@@ -7,7 +7,7 @@
 　　　　　 suffix：".jsp"  
 
 ---
-##### Spring MVC 转发  
+#### Spring MVC 转发  
 **普通转发：**访问视图解析器指定资源，格式：prefix+视图名称+suffix
 ``` java
 1. 相对路径：
@@ -63,3 +63,14 @@ dispatcher.forward(req,res);
 req.getSession().setAttribute("info","servlet 重定向");
 res.sendRedirect("/mvc-req/spring/index.form");
 ```
+#### 总结
+---
+
+```
+转发绝对路径  
+    1. 通过return String和return ModelAndView实现的转发，其绝对路径"/"：表示视图解析器前缀，"webapp/WEB-INF/views/"  
+    2. 通过forward实现的转发，其绝对路径"/"：表示、应用程序根目录， "webapp/"    
+重定向绝对路径  	
+    1. 通过new RedirectView()实现的重定向，其绝对路径"/"：表示视图解析器前缀，"webapp/WEB-INF/views/"  
+    2. 通过"redirect:url"实现的重定向，其绝对路径"/"：表示应用程序根目录， "webapp/" ;该方式对原始重定向方式进行了优化，重定向时不需要填写应用程序名称 
+```	
